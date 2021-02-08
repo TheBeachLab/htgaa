@@ -1,0 +1,89 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="base.css" type="text/css" />
+</head>
+<body>
+<div class="figure">
+<img src="./img/FabLab.svg" />
+
+</div>
+<h1 id="week-12.-engineering-the-human-microbiome">Week 12. Engineering the Human Microbiome</h1>
+<h2 id="lecture-video">Lecture video</h2>
+<p>Link to the <a href="https://vimeo.com/145416831">video lecture</a></p>
+<h2 id="assignments">Assignments</h2>
+<h3 id="d-print-a-14-ml-culture-tube-in-at-least-one-material.-culture-a-bacterial-strain-of-your-choice-in-this-tube-and-compare-the-growth-rate-optical-density-over-time-versus-a-polystyrene-control-tube">3D print a 14 mL culture tube in at least one material. Culture a bacterial strain of your choice in this tube and compare the growth rate (optical density) over time versus a polystyrene control tube</h3>
+<h4 id="d-printing-the-culture-tube">3D Printing the culture tube</h4>
+<p>I downloaded the <a href="./files/w12/14mL-Tube.zip">3D model</a> test tube and cap from David Kong's Microfluidic profile. I also created an account (beachlab) for later uploading my designs. When you are slicing the STL (I am using Cura from Ultimaker) <strong>make sure that you use a 100% fill density</strong>. Otherwise it probably won't be watertight. The intention was to 3D print a couple of tube/cap in different materials using an Ultimaker 2 3D printer. Unfortunately the Ultimaker 2 power supply broke in the middle of the 3D printing when the print was like this:</p>
+<div class="figure">
+<img src="./img/w12/fail.jpg" />
+
+</div>
+<p><strong>Houston... we have a problem:</strong> We don't have the tube and we don't have time to print it in another place either. So now we are going to run two parallel experiments using the same principle used by the Swiss team. We are going to introduce different materials, including 3D printing filament and others, inside sterilized containers and measure the anomaly in growth rate over time versus a blank control tube. Here we go.</p>
+<h4 id="experiment-1.-manual-readings">Experiment 1. Manual readings</h4>
+<p><strong>NOTE:</strong> What you are going to whitness now for this assignment is way too much. First of all, <strong>you don't need to do as many material cases as we did</strong>. But second and most important, with so many tubes, handling, pipetting, measurements and notes <strong>there is an exponential risk of making mistakes</strong>. Actually we got some atypical readings (as you will see later in the results) which I consider that were caused by the mess of the whole process. So if you are reading this for next year, focus in a maximum of 2 <del>or 3</del> materials only. We did all these materials:</p>
+<ul>
+<li>Green PLA/PHA from <a href="http://colorfabb.com/intense-green" class="uri">http://colorfabb.com/intense-green</a></li>
+<li>White PLA/PHA from <a href="http://colorfabb.com/bluish-white" class="uri">http://colorfabb.com/bluish-white</a></li>
+<li>Black XT from <a href="http://colorfabb.com/xt-black" class="uri">http://colorfabb.com/xt-black</a></li>
+<li>Black Carbon from <a href="http://colorfabb.com/xt-cf20" class="uri">http://colorfabb.com/xt-cf20</a></li>
+<li>IKEA candle wax</li>
+<li>Cheap Nail Polish</li>
+</ul>
+<p><img src="./img/w12/insane.png" /> This is insane, seriously. Never do that, or at least never show it to me.</p>
+<h4 id="conclussion">Conclussion</h4>
+<p>After 6 painful hours, we did not observe any difference in growth. Which is weird actually. We had a few atypical readings as you can see in the graphs below, but nothing of significance. We expected to see clear differences in growth at least in the most toxic components. Spreadsheet attached <a href="./files/w12/manual.xlsx">here</a></p>
+<div class="figure">
+<img src="./img/w12/manual.png" />
+
+</div>
+<h4 id="experiment-2.-automated-readings">Experiment 2. Automated readings</h4>
+<p>Inside the PRBB there is an automatic turbidimeter which incorporates incubator and shaker and takes a 96 well plate measuring automatically the optical density over time. The researchers here call this machine <em>the cricket</em> because of the noise the machine makes when it's reading the wells. Actually <strong>this is a nice machine to replicate with open hardware</strong>.</p>
+<p>So we designed a few cylinders Antimony in order to be as thin as possible and to fit as tight as possible in the 96 well plate. And we 3D printed them in <strong>white PLA</strong> and <strong>black ABS</strong> using Valldaura's Ultimaker 2.</p>
+<div class="figure">
+<img src="./img/w12/cylinders.jpg" />
+
+</div>
+<p>We also rub the walls of some wells with IKEA's candle wax and paint the walls of some other wells with nail polish. And then we let in the <em>cricket</em> for 25 hours.</p>
+<div class="figure">
+<img src="./img/w12/synergyh1.png" />
+
+</div>
+<h4 id="conclussion-1">Conclussion</h4>
+<p>As you can see in the image below we did not observe any difference in growth apart from that nail polish. Spreadsheet attached <a href="./files/w12/automated.xlsx">here</a></p>
+<div class="figure">
+<img src="./img/w12/automated.png" />
+
+</div>
+<h3 id="design-a-milli--or-micro-fluidic-artificial-gut-or-other-organ-on-a-chip-device-to-be-utilized-at-a-minimum-for-cell-culture">Design a milli- or micro-fluidic <em>artificial gut</em> or other <em>organ-on-a-chip</em> device to be utilized, at a minimum, for cell culture</h3>
+<p><strong>I got the inspiration looking at the pattern of a microfluidic device called <a href="http://www.hoope.io/">hoope</a></strong>. I will use a <strong>similar pattern to fabricate a dual gut for testing differences in growth of two different cultures</strong> or the same culture with different <em>Lysogeny Broth</em> (LB).</p>
+<p>I am going to design the device with a piece of software that we use in Fab Academy. It's called <strong>Antimony</strong> (<a href="https://github.com/mkeeter/antimony">github project here</a>), under (heavy) development by Matt Keeter. The reason why I am using this and no other software is because <del>I'm a freak</del> Antimony is parametrical and once you create one model you can create many variants by just modifying a few parameters. I don't think it is going to work as expected at the first try so <strong>it is better to spend a little bit of extra time now to save a lot later</strong>.</p>
+<video width="100%" autoplay loop>
+<source src="./img/w12/antimony.mp4" type="video/mp4"> Your browser does not support the video tag.
+</video>
+<p>This device will have a top and a bottom part with 3 inlets and 2 outlets. Because this microfluidics device is designed to grow cultures I didn't want to use any glue or chemicals to join the top and bottom parts so I designed holes for mechanical fixation using M2 screws and nuts.</p>
+<p>Please find <a href="./files/w12/microfluidics.sb">here</a> the <code>microfluidics.sh</code> original antimony design (the channels). Later I used <strong>Inkscape</strong> to create the cutting paths for the acrylic and the holes. And here it is the final design.</p>
+<div class="figure">
+<img src="./files/w12/microfluidics.svg" />
+
+</div>
+<h3 id="fabricate-your-device-or-at-least-one-component-of-your-device">Fabricate your device, or at least one component of your device</h3>
+<p>I fabricated the device using a Full Spectrum 45W laser cutter and transparent acrylic, 3mm width. The channels are made rastering an image at 100% power and 50% speed. The cutting was made following a vector path at 100% power and 20% speed. Actually these settings are not a very good reference because the laser beam is not well aligned and it requires more power.</p>
+<div class="figure">
+<img src="./img/w12/fabrication.jpg" />
+
+</div>
+<p>This is the prototyped design. Unfortunately I don't have any luer to show the functionality. If you look at the microscope the raster section you will see that it is quite rough. This is because my laser cutter is 3500 USD and a good one is 35000 USD. Donations are welcome.</p>
+<h3 id="share-your-final-device-designs-on-metafluidics">Share your <em>final</em> device designs on <em>Metafluidics</em></h3>
+<p>You can find the uploaded design <a href="http://metafluidics.staging.wpengine.com/devices/culture-chip/">here</a>. It is called <em>Culture Chip</em> and my username is <em>beachlab</em>.</p>
+<h2 id="assignment-review">Assignment review</h2>
+<p>On Wednesdays we always have a review session of last week's assignment. Here is the link to this week <a href="https://vimeo.com/146139576">assignments review</a>.</p>
+<hr />
+<h2 id="home"><a href="./w11.html">&lt;&lt;</a> <a href="./index.html">home</a> <a href="./w13.html">&gt;&gt;</a></h2>
+</body>
+</html>

@@ -1,0 +1,126 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="base.css" type="text/css" />
+</head>
+<body>
+<div class="figure">
+<img src="./img/FabLab.svg" />
+
+</div>
+<h1 id="working-with-repositories">Working with repositories</h1>
+<p>In HTGAA, like in Fab Academy (HTMAA) <strong>we are working with git repositories</strong>. In the past we used a single <strong>mercurial</strong> repository. I'll not get into the details but it was <em>somewhat</em> annoying. Now every lab has a git repository where students push and pull their work. The advantages of working with repositories are countless, you can create branches, roll back changes, delete other people's files and many other things that you will hate very soon.</p>
+<h1 id="for-lab-managers-only">For lab managers only</h1>
+<h2 id="init-a-repository">Init a repository</h2>
+<p><strong>Warning this instructions are for HTGAA 2015. Maybe in 2016 the instructions are different</strong>. This is a one time setup that has to be done for setting up a lab repository by the lab manager.</p>
+<h3 id="step-1.-login-to-fabcloud">Step 1. Login to FabCloud</h3>
+<p>Go to <a href="http://git.fabcloud.io" class="uri">http://git.fabcloud.io</a> and login using your <a href="http://fablabs.io" class="uri">http://fablabs.io</a> credentials (if you don't have a fablabs.io credential, you will have to create one first). <img src="./img/repo/1.png" /></p>
+<h3 id="step-2.-create-the-repository">Step 2. Create the repository</h3>
+<p>Create a new project, just press the <strong>+ NEW PROJECT</strong> button:</p>
+<div class="figure">
+<img src="./img/repo/2.png" />
+
+</div>
+<p>Fill in the repository name (<strong>I strongly recommend that you use <em>htgaa</em> for the repository name</strong>), a description, mark it as public and press the <strong>CREATE</strong> button:</p>
+<div class="figure">
+<img src="./img/repo/3.png" />
+
+</div>
+<h3 id="step-3.-get-the-cloning-address">Step 3. Get the cloning address</h3>
+<p>Once the repository is created you will see an address, <strong>this is the address that you have to give to your students for cloning the repository in their computers</strong>.</p>
+<div class="figure">
+<img src="./img/repo/5.png" />
+
+</div>
+<h3 id="step-4.-add-the-ssh-key">Step 4. Add the SSH key</h3>
+<p>We are now going to add the <strong>HTGAA SSH key</strong> to this project. The keys will be created and shared to you by the lab manager. Go back to the projects page and click on profile settings.</p>
+<div class="figure">
+<img src="./img/repo/6.png" />
+
+</div>
+<p>And click on <strong>+ ADD SSH KEY</strong></p>
+<div class="figure">
+<img src="./img/repo/7.png" />
+
+</div>
+<p>One option could be asking every student to <a href="https://help.github.com/articles/generating-ssh-keys/">generate it's own SSH keys</a>. But it is going to be easier to do the opposite: A SSH key has been already generated. You have to add the contents of the <strong>public</strong> key (copy all with a text editor) to the repository. Every student will have to add the keys to their systems (explained below).</p>
+<div class="figure">
+<img src="./img/repo/8.png" />
+
+</div>
+<h2 id="where-is-the-website">Where is the website?</h2>
+<p><strong>The HTGAA team will do this for you. You can skip this section unless you want to learn how to create another webpage from a repository</strong>. There is no website, because gitlab is not a webserver. You need to deploy this site to a web server.</p>
+<p>For my personal repositories I use <a href="https://github.com/git-ftp/git-ftp">git-ftp</a> which is a command line tool that pushes the site to a ftp folder.</p>
+<h3 id="installing-git-ftp">Installing git-ftp</h3>
+<pre><code>sudo add-apt-repository ppa:resmo/git-ftp
+sudo apt-get update
+sudo apt-get install git-ftp</code></pre>
+<h3 id="prepare-your-ftp-folder">Prepare your ftp folder</h3>
+<p>Create a folder in your web server, say it is <code>fab2016</code></p>
+<h3 id="do-initial-push">Do initial push</h3>
+<p>You only have to do this step the first time</p>
+<pre><code>cd ~/fab2016
+git ftp init -u &lt;user&gt; -P ftp://host.example.com/fab2016</code></pre>
+<h3 id="normal-workflow">Normal workflow</h3>
+<p>Every time you run this command, the repository will be uploaded to the webserver via FTP.</p>
+<pre><code>cd ~/fab2016
+git ftp push -u &lt;user&gt; -P ftp://host.example.com/fab2016</code></pre>
+<h1 id="for-students">For Students</h1>
+<h2 id="installing-git">Installing git</h2>
+<p>To install <strong>git</strong> in Ubuntu type in a terminal window:</p>
+<p><code>sudo apt-get install git</code></p>
+<h2 id="clone-the-repository">Clone the repository</h2>
+<p>Your lab manager will provide you with a SSH address to clone the repository. In your computer navigate to where you want to clone the repository:</p>
+<pre><code>cd ~
+git clone REPLACE_THIS_WITH_GIT_SSH_ADDRESS</code></pre>
+<h2 id="configuring-git">Configuring git</h2>
+<p>Set some basic config and tell git who you are. Maybe I don't have to say that but replace <strong>yourname</strong> with your actual name and <strong>youremail</strong> with your email address.</p>
+<pre><code>cd ~/htgaa # Asuming this is the repository name
+git config --global user.name &quot;yourname&quot;
+git config --global user.email &quot;youremail&quot;
+git config --global push.default simple</code></pre>
+<h2 id="add-ssh-keys-to-your-system">Add SSH keys to your system</h2>
+<p>Your lab manager will provide you with a pair of SSH keys. Say they are named <code>htgaa</code> and <code>htgaa.pub</code>. Move these keys to your <code>~/.ssh</code> folder and set permissions on the private key:</p>
+<pre><code>mv htgaa ~/.ssh
+mv htgaa.pub ~/.ssh
+chmod 600 ~/.ssh/htgaa</code></pre>
+<p>And now add the keys to the system:</p>
+<pre><code>eval &quot;$(ssh-agent -s)&quot; # Ensure ssh-agent is enabled
+ssh-add ~/.ssh/htgaa   # Add your SSH key to the ssh-agent</code></pre>
+<h2 id="basic-git-workflow">Basic git workflow</h2>
+<p>This is the basic git workflow. Once you have made all changes to your website (hopefully daily), upload those changes to the repository. <strong>Very important:</strong> Do not miss any step, and do them in order.</p>
+<pre><code>cd ~/htgaa                # go to the repository folder
+git pull                  # pull other students changes
+git add --all             # add your changes
+git commit -m &quot;message&quot;   # write a meaningful message
+git push</code></pre>
+<p>This is the manual workflow of updating your page. You can also write a script and <a href="./doc.html">automate this process</a>.</p>
+<h2 id="rolling-back-changes">Rolling back changes</h2>
+<h2 id="troubleshooting">Troubleshooting</h2>
+<h3 id="ssh-connection-not-working">SSH connection not working</h3>
+<p>Sometimes git asks for my repository password even if I have specified to use SSH keys. So what I do is check if the keys are in the <strong>ssh-agent</strong>:</p>
+<pre><code>$ ssh-add -l
+Could not open a connection to your authentication agent.</code></pre>
+<p>In this case the <strong>ssh-agent</strong> was not running, so I start it using:</p>
+<pre><code>$ eval `ssh-agent -s`
+Agent pid 3032</code></pre>
+<p>I check again and now the problem is that the agent has no identities:</p>
+<pre><code>$ ssh-add -l
+The agent has no identities.</code></pre>
+<p>I list the keys in my <code>.ssh</code> folder:</p>
+<pre><code>$ ls ~/.ssh
+htgaa  htgaa.pub  config  known_hosts</code></pre>
+<p>I add the <code>htgaa</code> key, which is the key added in git</p>
+<pre><code>$ ssh-add ~/.ssh/htgaa
+Identity added: /home/irix/.ssh/htgaa (/home/irix/.ssh/htgaa)</code></pre>
+<p>I check again:</p>
+<pre><code>$ ssh-add -l
+2048 SHA256:D0Yg6HyzIzD9mIIpytearRhVc2YMYEtIpqP664EjEzU /home/irix/.ssh/htgaa (RSA)</code></pre>
+<p>An then, git pull and push using SSH works again. I still don't know why this happens, I suspect this is something related when I put the computer to sleep and it awakes in another wifi network. If I restart the computer these steps are not required.</p>
+</body>
+</html>

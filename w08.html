@@ -1,0 +1,190 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+  </style>
+  <link rel="stylesheet" href="base.css" type="text/css" />
+</head>
+<body>
+<div class="figure">
+<img src="./img/FabLab.svg" />
+
+</div>
+<h1 id="week-8.-fluorescence-in-situ-sequencing-fisseq">Week 8. Fluorescence In Situ Sequencing (FISSEQ)</h1>
+<h2 id="lecture-video">Lecture video</h2>
+<p>Link to the <a href="https://vimeo.com/142401127">video lecture</a></p>
+<h2 id="assignments">Assignments</h2>
+<h3 id="computational-assignment-analyze-a-fisseq-dataset-and-find-some-in-situ-sequences">Computational assignment: Analyze a FISSEQ dataset and find some in situ sequences</h3>
+<h4 id="software-installation">Software installation</h4>
+<p>The first thing I did was requesting an <a href="https://store.enthought.com/#canopy-academic">educational license</a> of <strong>Canopy</strong>. I had to create and account and explain why I wanted an educational account because the email I provided wasn't an <code>.edu</code> one. Actually I have and <code>.edu</code> email from my University <a href="http://upc.edu">UPC</a>, but I just wanted to find out how they consider us. In the end Canopy replyed that we (I guess fab labs) are not eligible for using the educational version and asked us to use the free Express edition instead for the assignment. You can do so if you want, I am not. Another student from <a href="http://bio.academany.org/labs/cambridge/">Cambridge, Boston</a>, Thras (Thank you man!) showed me that Canopy wasn't a piece of software, but a wrapper containing a Python environment with some packages. Here it is the <a href="https://www.enthought.com/products/canopy/package-index/">full list</a> of software contained in Canopy, but I installed only what Thras said it was enough for this assignmnent. Under Ubuntu it's:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">sudo</span> apt-get install python-numpy python-scipy python-matplotlib python-biopython
+<span class="kw">pip</span> install -U pillow</code></pre></div>
+<p>I also installed <strong>R</strong> and <strong>Bowtie</strong> from the Ubuntu software center. I <a href="https://www.rstudio.com/products/rstudio/download/">downloaded</a> and installed <strong>RStudio 0.99.489</strong> for Ubuntu 64 bits. I also <a href="http://fiji.sc/Fiji">downloaded</a> and installed <strong>Fiji ImageJ Distribution</strong> for Linux 64. Instead of MATLAB I used the alternative GNU version called <strong>Octave 4</strong> (installed from Ubuntu software center) which is supposed to have high compatibility with MATLAB. We'll find out soon.</p>
+<h4 id="bowtie-aligning-sequences-to-the-human-genome">Bowtie: Aligning sequences to the human genome</h4>
+<p>I <a href="ftp://ftp.ncbi.nih.gov/gene/DATA/gene2refseq.gz">downloaded</a> the <strong>RefSeq-to-Gene ID Conversion Table</strong>, a 2.9 GB uncompressed file and also downloaded (howto below) the <strong>human RefSeq RNA FASTA</strong> which was splitted into 24 files so it was required to extract-combine it and compile it:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">wget</span> ftp://ftp.ncbi.nih.gov/refseq/H_sapiens/mRNA_Prot/human.*.rna.fna.gz
+<span class="kw">gunzip</span> -c human.*.rna.fna.gz <span class="kw">&gt;</span> human.rna.fna
+<span class="kw">rm</span> human.*.rna.fna.gz
+<span class="kw">bowtie-build</span> -C -f human.rna.fna refseq_human</code></pre></div>
+<p>The Bowtie step takes quite a lot of time (around 54 minutes in my i5) and computing resources so I went to the website to see what's happening. From the <a href="http://bowtie-bio.sourceforge.net/index.shtml">Bowtie website</a>:</p>
+<blockquote>
+<p><strong>Bowtie is an ultrafast, memory-efficient short read aligner. It aligns short DNA sequences (reads) to the human genome</strong> at a rate of over 25 million 35-bp reads per hour. Bowtie indexes the genome with a Burrows-Wheeler index to keep its memory footprint small: typically about 2.2 GB for the human genome (2.9 GB for paired-end).</p>
+</blockquote>
+<p>That brings me to wikipedia <a href="https://en.wikipedia.org/wiki/Sequence_alignment">Sequence Alignment</a> entry:</p>
+<blockquote>
+<p>In bioinformatics, a <strong>sequence alignment is a way of arranging the sequences of DNA, RNA, or protein to identify regions of similarity that may be a consequence of functional, structural, or evolutionary relationships between the sequences</strong>. Aligned sequences of nucleotide or amino acid residues are typically represented as rows within a matrix. Gaps are inserted between the residues so that identical or similar characters are aligned in successive columns.<br />
+(...)<br />
+<strong>If two sequences in an alignment share a common ancestor, mismatches can be interpreted as point mutations and gaps as indels</strong> (that is, insertion or deletion mutations) introduced in one or both lineages in the time since they diverged from one another. In sequence alignments of proteins, the degree of similarity between amino acids occupying a particular position in the sequence can be interpreted as a rough measure of how conserved a particular region or sequence motif is among lineages. <strong>The absence of substitutions, or the presence of only very conservative substitutions</strong> (that is, the substitution of amino acids whose side chains have similar biochemical properties) in a particular region of the sequence, <strong>suggest that this region has structural or functional importance</strong>. Although DNA and RNA nucleotide bases are more similar to each other than are amino acids, the conservation of base pairs can indicate a similar functional or structural role.</p>
+</blockquote>
+<p><img src="./img/w08/Histone_Alignment.png" /> <a href="https://commons.wikimedia.org/wiki/File:Histone_Alignment.png#/media/File:Histone_Alignment.png">Histone Alignment&quot; by Thomas Shafee - Own work. Licensed under CC BY-SA 4.0 via Commons</a></p>
+<p>The output of the Bowtie step are the following binary files:</p>
+<pre><code>refseq_human.1.ebwt
+refseq_human.2.ebwt
+refseq_human.3.ebwt
+refseq_human.4.ebwt
+refseq_human.rev.1.ebwt
+refseq_human.rev.2.ebwt</code></pre>
+<h4 id="analysing-with-matlab-octave.-a-world-of-pain">Analysing with <del>MATLAB</del> Octave. A world of pain</h4>
+<p>For this step I <a href="http://arep.med.harvard.edu/FISSEQ_Nature_Protocols_2014/">downloaded</a> and unzipped the <strong>FISSEQ Nature Protocols (2014)</strong> and also moved the output files from the Bowtie step to the <code>fisseq</code> folder. <strong>Moment of truth now, trying Octave instead of MATLAB</strong>:</p>
+<div class="sourceCode"><pre class="sourceCode matlab"><code class="sourceCode matlab">&gt;&gt; addpath(<span class="st">&#39;fisseq&#39;</span>,<span class="st">&#39;fisseq/bfmatlab&#39;</span>)
+&gt;&gt; input_dir=<span class="st">&#39;decon_images/&#39;</span>
+input_dir = decon_images/
+&gt;&gt; output_dir=<span class="st">&#39;registered_images/&#39;</span>
+output_dir = registered_images/
+&gt;&gt; register_FISSEQ_images(input_dir,output_dir,<span class="fl">10</span>,<span class="fl">0.1</span>,<span class="fl">1</span>)
+ans =  <span class="fl">1</span>
+Initialize:
+Elapsed time is <span class="fl">0.0993981</span> seconds.
+error: <span class="st">&#39;loci&#39;</span> undefined near line <span class="fl">79</span> column <span class="fl">20</span>
+error: called from
+    bfCheckJavaPath at line <span class="fl">79</span> column <span class="fl">13</span>
+    bfopen at line <span class="fl">99</span> column <span class="fl">8</span>
+    register_FISSEQ_images at line <span class="fl">66</span> column <span class="fl">4</span>
+error: evaluating argument list element number <span class="fl">1</span>
+error: called from
+    bfCheckJavaPath at line <span class="fl">79</span> column <span class="fl">13</span>
+    bfopen at line <span class="fl">99</span> column <span class="fl">8</span>
+    register_FISSEQ_images at line <span class="fl">66</span> column <span class="fl">4</span>
+&gt;&gt;</code></pre></div>
+<p>Too easy to be true. So I go to line 79 in the <code>bfCheckJavaPath.m</code> file which says <code>version = char(loci.formats.FormatTools.VERSION);</code>. A Google search for <code>loci octave</code> <a href="https://www.openmicroscopy.org/community/viewtopic.php?f=13&amp;t=7530">brings me to a forum</a> where someone says that <a href="http://loci.wisc.edu/software/bio-formats">Bio-Formats</a> for Matlab might not be fully compatible with Octave. So I'm now stuck here trying to refuse the fact that I will need to use MATLAB in the end.</p>
+<blockquote>
+<p><strong>What's the point of trying to do it in Octave? Why don't you just do it in MATLAB? You are wasting your time</strong></p>
+<p>These are common comments I receive now and back in 2003, during Fab Academy, when I was using Kokopelli instead of Eagle for designing circuit boards. I'll try to answer: It is not about Octave or Kokopelli. It's about the challenge, about exploring the unknown, the call for doing something that has been never done before. If you don't feel this need you are missing a gene, because <a href="http://ngm.nationalgeographic.com/2013/01/125-restless-genes/dobbs-text">there is a gene for that</a>.</p>
+</blockquote>
+<p>And when all seemed lost, I stared at defeat and <a href="https://lists.gnu.org/archive/html/help-octave/2015-09/msg00136.html">found hope</a>. <strong>There is a bio-formats version for Octave</strong>. You will not find it listed in the <a href="http://downloads.openmicroscopy.org/bio-formats/5.1.7/">downloads section</a>. But it is <a href="http://downloads.openmicroscopy.org/bio-formats/5.1.7/artifacts/bioformats-octave-5.1.7.tar.gz">there</a>, release after release, hidden, waiting... So there we go for the installation. This is for version 5.1.7 but there might be a newer version. <a href="http://downloads.openmicroscopy.org/bio-formats/">Check it</a> and change the numbers accordingly:</p>
+<p>Download and install the latest bioformat java package. According to Carnë Draug <em>This mimics how java packages are installed by Debian. The actual jar has the version on the filename, while the unversioned filename is a symbolic link to a specific version. This allows you to have multiple versions installed while keeping one (usually the latest) as the default</em>:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">sudo</span> mkdir /usr/local/share/java/
+<span class="kw">sudo</span> wget http://downloads.openmicroscopy.org/bio-formats/5.1.7/artifacts/bioformats_package.jar -O /usr/local/share/java/bioformats_package-5.1.7.jar
+<span class="kw">sudo</span> ln -s bioformats_package-5.1.7.jar /usr/local/share/java/bioformats_package.jar</code></pre></div>
+<p>Create a file named <code>javaclasspath.txt</code> in your home directory and add the path to the bioformats_package.jar file.</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">touch</span> ~/javaclasspath.txt
+<span class="kw">echo</span> <span class="st">&quot;/usr/local/share/java/bioformats_package.jar&quot;</span><span class="kw">&gt;&gt;</span>~/javaclasspath.txt</code></pre></div>
+<p>Download the latest bioformat package and inside Octave prompt navigate to the downloaded file and install it.</p>
+<div class="sourceCode"><pre class="sourceCode matlab"><code class="sourceCode matlab">&gt;&gt; cd ~/Downloads
+&gt;&gt; pkg install bioformats-octave-<span class="fl">5.1.7</span>.tar.gz</code></pre></div>
+<p>We are not yet done. <code>containers.Map</code> is not yet implemented in Octave so we need to change some lines in the file <code>register_FISSEQ_images.m</code> according to <a href="http://stackoverflow.com/questions/11622084/converting-matlab-to-octave-is-there-a-containers-map-equivalent">this stackoverflow entry</a>. Replace this:</p>
+<div class="sourceCode"><pre class="sourceCode matlab"><code class="sourceCode matlab">mapObj = containers.Map(strsplit(layout_order,<span class="st">&#39; &#39;</span>),strsplit(layout_size,<span class="st">&#39; &#39;</span>));
+x = str2num(mapObj(<span class="st">&#39;x&#39;</span>));
+y = str2num(mapObj(<span class="st">&#39;y&#39;</span>));
+z = str2num(mapObj(<span class="st">&#39;z&#39;</span>));</code></pre></div>
+<p>With this:</p>
+<div class="sourceCode"><pre class="sourceCode matlab"><code class="sourceCode matlab">mapObj = struct();
+for i=<span class="fl">1</span>:numel(strsplit(layout_order,<span class="st">&#39; &#39;</span>))
+    mapObj.(strsplit(layout_order,<span class="st">&#39; &#39;</span>){i}) = strsplit(layout_size,<span class="st">&#39; &#39;</span>){i};
+end
+x = str2num(mapObj.(<span class="st">&#39;x&#39;</span>));
+y = str2num(mapObj.(<span class="st">&#39;y&#39;</span>));
+z = str2num(mapObj.(<span class="st">&#39;z&#39;</span>));</code></pre></div>
+<p>And there we go again with Octave:</p>
+<div class="sourceCode"><pre class="sourceCode octave"><code class="sourceCode octave">&gt;&gt; <span class="fu">cd</span> ~/Downloads/w8
+&gt;&gt; <span class="fu">addpath</span>(<span class="st">&#39;fisseq&#39;</span>)
+&gt;&gt; input_dir=<span class="st">&#39;decon_images/&#39;</span>
+input_dir = decon_images/
+&gt;&gt; output_dir=<span class="st">&#39;registered_images/&#39;</span>
+output_dir = registered_images/
+&gt;&gt; pkg <span class="fu">load</span> bioformats
+&gt;&gt; register_FISSEQ_images(input_dir,output_dir,<span class="fl">10</span>,<span class="fl">0.1</span>,<span class="fl">1</span>)</code></pre></div>
+<hr />
+<p><strong>This is it for Octave. I give up</strong>, I need to finish the assignment so I am going to install MATLAB. It <em>almost</em> works. But you can't go anywhere with <em>almost</em>. For future reference this is how far I reached. I'm getting two messages. One message continuosly: <code>Unknown ExperimentType value 'null' will be stored as &quot;Other&quot;</code> and an error at the end <code>error: register_FISSEQ_images: A(I,J,...) = X: dimensions mismatch</code>. I have been in conversations with Carnë Draug and some Octave and Bioformats developers trying to resolve this issue.</p>
+<p><strong>First:</strong> Bioformats under Octave is working fine. Meaning you can open an <code>.ics</code> file correctly. If you for example try with this file <a href="http://www.loci.wisc.edu/files/software/data/qdna1.zip" class="uri">http://www.loci.wisc.edu/files/software/data/qdna1.zip</a>, you can open the image doing the following workflow (edited from Carnë Draug):</p>
+<pre><code>$ octave
+octave&gt; pkg load bioformats
+octave&gt; ls
+qdna1.ics  qdna1.ids  readme.txt
+octave3&gt; bf_img = bfopen (&quot;qdna1.ics&quot;);
+ICSReader initializing /home/username/Downloads/qdna1/qdna1.ics
+Finding companion file
+Checking file version
+Reading metadata
+Populating core metadata
+Populating OME metadata
+Unknown ExperimentType value &#39;null&#39; will be stored as &quot;Other&quot;
+Reading series #1
+   .
+octave&gt; imshow (bf_img{1}{1})</code></pre>
+<p><strong>Second:</strong> There is something else that needs to be changed in register_FISSEQ_images.m to be compatible with Octave. It complains in line 148. <code>error: register_FISSEQ_images: A(I,J,...) = X: dimensions mismatch</code>. According to Carnë Draug the error might be caused because <em>(...) note that unlike <strong>imread()</strong>, <strong>bfopen()</strong> does not return an N dimensional array. It returns a 4 cell array. It's a bit tricker to handle.</em> But to be honest I have no idea how to move from here.</p>
+<h4 id="analysing-with-matlab-2015a-linux-version">Analysing with MATLAB 2015a Linux version</h4>
+<p>Here we go again. I Installed MATLAB R2015a, Bioformats for MATLAB and started working again on the script. And then:</p>
+<div class="figure">
+<img src="./img/w08/matlab.png" />
+
+</div>
+<p>When I saw this I holded the breath for the longest time in my entire life. Probably more than a minute. It looks like I cannot complete the computational assignment with my combination of software/hardware.</p>
+<p><strong>Update:</strong> I am working towards this goal after HTGAA.</p>
+<h3 id="design-assignment">Design Assignment</h3>
+<h4 id="were-there-any-experiments-in-htgaa-so-far-where-in-situ-data-of-rna-dna-protein-or-other-cellular-features-would-be-helpful-in-understanding-the-engineering-process">Were there any experiments in HTGAA so far, where in situ data of RNA, DNA, protein, or other cellular features would be helpful in understanding the engineering process?</h4>
+<p>Well I have to admit that this assignment is totally out of my understanding scope. But I think in bio production could be helpful to understand which DNA and RNA elements are active during the process of production of the elements we want to produce.</p>
+<h4 id="what-are-some-reasons-in-situ-data-could-be-better-than-bulk-data-for-this-experiment-try-to-think-of-cases-where-a-bulk-measurement-would-cause-you-to-miss-some-insight.">What are some reasons in situ data could be better than bulk data for this experiment? Try to think of cases where a bulk measurement would cause you to miss some insight.</h4>
+<p>In situ data has the capability to consider environment and relation betweeen different cells and conditions. Bulk data on the other hand does not consider those natural conditions.</p>
+<h4 id="what-kinds-of-molecules-would-you-like-to-detect-e.g.-what-species-of-rna-how-would-you-go-about-targeting-those-molecules">What kinds of molecules would you like to detect? E.g. what species of RNA? How would you go about targeting those molecules?</h4>
+<p>I know they would be mRNA and DNA. But no idea on how to target them.</p>
+<h4 id="what-factors-would-limit-your-ability-to-detect-the-things-you-are-interested-in">What factors would limit your ability to detect the things you are interested in?</h4>
+<p>Apart from my scarce knowledge. We could not see it tri-dimensionally, only bi-dimensionally. And also that the process kills the cell. So it would be limiting if the survival of the cell would be required to analize another future process in the cell.</p>
+<h3 id="lab-assignment-create-an-in-situ-sequencing-library-inside-a-polyacrylamide-hydrogel-and-detect-the-sequencing-amplicons-using-fluorescent-sequencing-by-hybridization">Lab assignment: Create an in situ sequencing library inside a polyacrylamide hydrogel, and detect the sequencing amplicons using fluorescent sequencing by hybridization</h3>
+<p>We tried to do this experiment but I we couldn't do it. <strong>To be honest I think that the lab assignment is out of the scope for a fab lab</strong>. I think so because even using the resources of the PRBB (Biomedical Research Park of Barcelona) this assignment could not be completed. The required materials were not there and the cost of buying them was unfordable for us. And through the vision of a fab lab taking students, <strong>I wonder how are we going to deal with this since the cost of the required materials for this experiment is about a quarter of what you get per student</strong>. Just the materials.</p>
+<h2 id="assignment-review">Assignment review</h2>
+<p>On Wednesdays we always have a review session of last week's assignment. Here is the link to this week <a href="https://vimeo.com/143154714">assignments review</a>.</p>
+<hr />
+<h2 id="home"><a href="./w07.html">&lt;&lt;</a> <a href="./index.html">home</a> <a href="./w09.html">&gt;&gt;</a></h2>
+</body>
+</html>

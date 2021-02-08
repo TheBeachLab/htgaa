@@ -1,0 +1,327 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+  </style>
+  <link rel="stylesheet" href="base.css" type="text/css" />
+</head>
+<body>
+<div class="figure">
+<img src="./img/FabLab.svg" />
+
+</div>
+<h1 id="week-15.-tool-chains-automation-and-open-hardware">Week 15. Tool Chains, Automation and Open Hardware</h1>
+<h2 id="lecture-video">Lecture video</h2>
+<p>Link to the <a href="https://vimeo.com/147617792">video lecture</a></p>
+<h2 id="the-comeback">The comeback</h2>
+<p>I spent the last 5 weeks in India and Dubai teaching an <a href="http://thebeachlab.github.io">experimental course</a> designed for fab academy potential students. During that trip I learned a lot of new things like <a href="./doc.html">better ways to write documentation</a>. But on top of that it was an intense lifetime experience.</p>
+<div class="figure">
+<img src="./img/w15/india.jpg" />
+
+</div>
+<p>When I came back to The Beach Lab I found that most of my students are now either working from Barcelona Green Fab Lab or abandoned the course. So I am facing the last few weeks of HTGAA alone. I am also designing a <strong>catch up plan</strong> with the help of the <a href="https://vimeo.com/fabacademy">videos</a> (thanks so much Zaerc) and the documentation that other students posted online. The goal this week is to complete weeks 15 and <a href="./w13.html">13</a>.</p>
+<h2 id="assignment-now-this-i-can-do">Assignment: Now this I can do</h2>
+<p>The assignment <a href="http://bio.academany.org/doc/tool_chains">this week</a> is to <strong>design and build a piece of open hardware for biology</strong>. For the first time in HTGAA I feel like I will be able to complete the assignment on time.</p>
+<h3 id="thinking-what-to-do">Thinking what to do</h3>
+<p>I have to be <strong>realistic</strong> now, I'd like to build one of these complex pieces of lab equipment but my time is <strong>limited</strong>, this is a fact. Also I'd like to incorporate this piece of hardware to my final project and due assignments. This is a list of hardware needed for the assignments:</p>
+<table>
+<thead>
+<tr class="header">
+<th>Hardware</th>
+<th>Assignments</th>
+<th>Open Source Version</th>
+<th>Comments</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>PCR</td>
+<td>w8</td>
+<td>OpenPCR</td>
+<td>Hard</td>
+</tr>
+<tr class="even">
+<td>Shaking Incubator</td>
+<td>w3, w8 , w12</td>
+<td></td>
+<td>Useful</td>
+</tr>
+<tr class="odd">
+<td>Fluorimeter</td>
+<td>w3</td>
+<td></td>
+<td>Hard</td>
+</tr>
+<tr class="even">
+<td>Vortex Mixer</td>
+<td>w3</td>
+<td></td>
+<td>Easy</td>
+</tr>
+<tr class="odd">
+<td>Fluorescence Microscope</td>
+<td>w8</td>
+<td></td>
+<td>&gt;40x Cy3 Cy5</td>
+</tr>
+<tr class="even">
+<td>Centriguge</td>
+<td>w10</td>
+<td></td>
+<td>Useful</td>
+</tr>
+<tr class="odd">
+<td>Spectrophotometer</td>
+<td>w12</td>
+<td></td>
+<td>Hard</td>
+</tr>
+<tr class="even">
+<td>UV Irradiator</td>
+<td>w12</td>
+<td></td>
+<td>Easy</td>
+</tr>
+<tr class="odd">
+<td>Eppendorf Biophotometer</td>
+<td>w12</td>
+<td></td>
+<td>Hard</td>
+</tr>
+</tbody>
+</table>
+<p>After discussing with Adolfo, he will fabricate a microscope and I decided to fabricate an <strong>Incubator</strong> and a <strong>Vortex Mixer</strong>, and probably in the future a <strong>Hard disk centrifuge</strong>.</p>
+<h3 id="project-1-vortex-mixer">Project #1: Vortex Mixer</h3>
+<p>This is an easy to do, but useful piece of equipment. You just need a salvaged computer fan and 12V power source. The blades will mix the solution while hitting the Eppendorf tube. Below I am simulating the effect with a pen since I don't have any Eppendorf tube.</p>
+<div class="figure">
+<img src="./img/w15/vortex.gif" />
+
+</div>
+<h3 id="project-2-incubator">Project #2: Incubator</h3>
+<p>This was quite unexpected since I considered the project rather complicated with all the insulation but then I found a foam box from a 3d printer enclosure which is really good looking and already has a peep hole on it. I started reading <a href="http://hackteria.org/wiki/DIY_Incubator">Hacteria's DIY Incubator</a>. My version of the incubator will have the following features:</p>
+<ul>
+<li>Arduino controlled<br />
+</li>
+<li><a href="https://www.sparkfun.com/products/retired/8257">SHT15</a> temperature and humidity sensor<br />
+</li>
+<li><a href="https://www.adafruit.com/products/1138">Neopixel</a> RGB LED lighting<br />
+</li>
+<li>Relay activated Fan air recirculation<br />
+</li>
+<li>Relay activated Power resistor heating elements</li>
+<li>Lid Switch</li>
+</ul>
+<p>Future features:</p>
+<ul>
+<li>Rotary encoder for settings</li>
+<li>Orbital shaking bed<br />
+</li>
+<li>Internal camera<br />
+</li>
+<li>CO2 sensor and supply<br />
+</li>
+<li>Piezo buzzer Alarm</li>
+<li>Timer</li>
+</ul>
+<h4 id="the-sticker">The sticker</h4>
+<p><strong>Do not underestimate the value of a sticker</strong>, specially when you are fabricating a piece of hardware that no one knows what it is, except you. I created the text in Inkscape using <a href="http://www.cbrd.co.uk/fonts/">Transport Font</a>, exported to a 500 dpi <code>.png</code> image and cutted with the Vinyl cutter using <a href="http://fabmodules.org">Fab Modules</a>.</p>
+<div class="figure">
+<img src="./img/w15/sticker.jpg" />
+
+</div>
+<p><a href="../files/w15/incubator.svg">Link to <code>.svg</code> design file</a></p>
+<h4 id="testing-the-sht15-sensor">Testing the SHT15 sensor</h4>
+<p>I started hooking an Arduino Leonardo to the SHT15 sensor and uploading <a href="http://bildr.org/2012/11/sht15-arduino/">this code</a>. It took me a while to get it working. First I had to execute Arduino IDE 1.6.6 as root (<code>sudo ./arduino</code>) and select the <code>/dev/ttyACM0</code> port, otherwise it wasn't working. I have to find out why. The good news are that I started getting readings.</p>
+<div class="figure">
+<img src="./img/w15/temphum.png" />
+
+</div>
+<h4 id="how-much-heating-power-is-needed">How much heating power is needed?</h4>
+<p>The <strong>internal volume of the incubator</strong> is 35x35x15 cm, which <strong>is about 18 liters</strong>. That volume of air <strong>at 20ºC weights around 22g</strong>. Dry air has a specific heat of <code>1J/(g ºC)</code>. <strong>For a target temperature of 37ºC</strong>, we need to increase the temperature by 17ºC and that will cost 374J. Given that <code>P(W)=E(J)/t(s)</code> (being <code>P(W)</code> power in Watts, <code>E(J)</code> energy in Joules and <code>t(s)</code> time in seconds) and assuming we want to reach the target temperature in <strong>one minute</strong> (60s), <strong>the heat power needed is 374J/60s=6W</strong>.</p>
+<div class="figure">
+<img src="./img/w15/resistor.jpg" />
+
+</div>
+<p>Now, let's see what a power resistor with a power rating of 50W -this is the maximum amount of power that can be safely dissipated without being damaged- and 15 Ohm would dissipate at 12V. First we use Ohm’s law <code>V = I × R</code>, to find the current through the resistor, <code>12 = I x 15</code> which turns out to be <code>I = 0.8A</code>. Then, we can use the power rule <code>P = I × V</code> , to find the power dissipated by the resistor, `P=0.8 x 12 = 9.6W.</p>
+<h4 id="calculating-the-heat-loss">Calculating the heat loss</h4>
+<p>Ideally, in a perfectly insulated incubator, once we reach the target temperature we could turn off the heat source and the temperature would remain constant over time. Obviously, this is not going to happen due to heat loss. <strong>If we can calculate the heat loss, we can determine what heat power is needed to keep the temperature constant</strong>. Actually we should also add this power to the power needed to heat the air, since we didn't consider heat losses in the original calculation.</p>
+<p>To calculate the heat loss we heat the incubator to 37ºC, turn off the heat source and count the time in seconds needed to decrease (say) 5ºC. Since it's known that the energy that will be transferred to decrease that temperature is 5*22=110J, we can obtain the power needed using <code>P(W)=E(J)/t(s)</code>. <strong>The better the insulation is, the less power will be needed</strong>.</p>
+<h4 id="the-code">The Code</h4>
+<p>The main loop of the code reads the temperature and humidity and sends it to a LCD display via serial connection. Then it checks whether the lid is open or not. If the lid is open it turns off heating and air recirculation and changes the LED to red. If the lid is closed it changes the LED to green, activates the air recirculation and compares the actual temperature against a static target temperature (in the future it is preferable that the target temperature can be set dynamically with a rotary encoder), in order to activate or deactivate the power resistors accordingly.</p>
+<div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c"><span class="dt">void</span> loop() {
+
+  <span class="co">// read the temperature and humidity</span>
+  <span class="dt">float</span> temperature = getTemperature();  <span class="co">// gets the temperature</span>
+  <span class="dt">float</span> humidity = getHumidity();        <span class="co">// gets the humidity</span>
+
+  <span class="co">// print the current temperature</span>
+  lcdPosition(<span class="dv">0</span>, <span class="dv">0</span>);
+  LCD.print(<span class="st">&quot;Target:&quot;</span>);
+  lcdPosition(<span class="dv">0</span>, <span class="dv">7</span>);
+  LCD.print(<span class="dv">37</span>);
+  lcdPosition(<span class="dv">1</span>, <span class="dv">0</span>);
+  LCD.print(<span class="st">&quot;T:&quot;</span>);
+  lcdPosition(<span class="dv">1</span>, <span class="dv">2</span>);
+  LCD.print(temperature);
+  lcdPosition(<span class="dv">1</span>, <span class="dv">8</span>);
+  LCD.print(<span class="st">&quot;H:&quot;</span>);
+  lcdPosition(<span class="dv">1</span>, <span class="dv">10</span>);
+  LCD.print(humidity);
+
+  <span class="co">// check if the lid is openend</span>
+  <span class="kw">if</span> (digitalRead(<span class="dv">7</span>) == HIGH)
+  {
+    <span class="co">// write OPEN and turn LED RED</span>
+    lcdPosition(<span class="dv">0</span>, <span class="dv">10</span>);
+    LCD.print(<span class="st">&quot;OPEN  &quot;</span>);
+    colorWipe(strip.Color(<span class="dv">255</span>, <span class="dv">0</span>, <span class="dv">0</span>), <span class="dv">10</span>); <span class="co">// Red</span>
+    <span class="co">// turn off fan and heater</span>
+    digitalWrite(<span class="dv">11</span>, LOW); <span class="co">// TURN FAN OFF</span>
+    digitalWrite(<span class="dv">12</span>, LOW); <span class="co">// TURN HEATER OFF</span>
+  }
+
+  <span class="kw">else</span>  <span class="co">// if the lid is closed try to reach target temperature</span>
+  {
+    <span class="co">// write closed and turn LED GREEN</span>
+    lcdPosition(<span class="dv">0</span>, <span class="dv">10</span>);
+    LCD.print(<span class="st">&quot;CLOSED&quot;</span>);
+    colorWipe(strip.Color(<span class="dv">0</span>, <span class="dv">255</span>, <span class="dv">0</span>), <span class="dv">10</span>); <span class="co">// Green</span>
+
+    <span class="kw">if</span> (temperature &gt;= targetTemp)  <span class="co">// If we reach target temperature</span>
+    {
+      digitalWrite(<span class="dv">12</span>, LOW); <span class="co">// TURN HEATER OFF</span>
+    }
+    <span class="kw">else</span>  <span class="co">// temperature is below Target Temperature</span>
+    {
+      digitalWrite(<span class="dv">12</span>, HIGH); <span class="co">// TURN HEATER ON</span>
+    }
+  }
+}</code></pre></div>
+<p>You can find the full <code>.ino</code> code <a href="./files/w15/incubator/incubator.ino">here</a></p>
+<h4 id="bill-of-materials">Bill of materials</h4>
+<p>This has been the cost of my prototype:</p>
+<table>
+<thead>
+<tr class="header">
+<th>Item</th>
+<th>Qty</th>
+<th>Unit Cost</th>
+<th>Total Cost</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Arduino</td>
+<td>1</td>
+<td>20 EUR</td>
+<td>20 EUR</td>
+</tr>
+<tr class="even">
+<td>LCD Display</td>
+<td>1</td>
+<td>Salvaged Old Alarm</td>
+<td>0 EUR</td>
+</tr>
+<tr class="odd">
+<td>Power Supply</td>
+<td>1</td>
+<td>Salvaged Old Computer</td>
+<td>0 EUR</td>
+</tr>
+<tr class="even">
+<td>Relays</td>
+<td>1</td>
+<td>8 EUR</td>
+<td>8 EUR</td>
+</tr>
+<tr class="odd">
+<td>Enclosure</td>
+<td>1</td>
+<td>Salvaged 3D printer packaging</td>
+<td>0 EUR</td>
+</tr>
+<tr class="even">
+<td>Power resistors 50W/15 Ohm</td>
+<td>4</td>
+<td>7 EUR</td>
+<td>28 EUR</td>
+</tr>
+<tr class="odd">
+<td>Limit switch</td>
+<td>1</td>
+<td>Salvaged Old Alarm</td>
+<td>0 EUR</td>
+</tr>
+<tr class="even">
+<td>SHT-15 Sensor</td>
+<td>1</td>
+<td>30 EUR</td>
+<td>30 EUR</td>
+</tr>
+<tr class="odd">
+<td>Neopixel LED Strip</td>
+<td>1</td>
+<td>5 EUR</td>
+<td>5 EUR</td>
+</tr>
+<tr class="even">
+<td><strong>Total Cost</strong></td>
+<td></td>
+<td></td>
+<td><strong>91 EUR</strong></td>
+</tr>
+</tbody>
+</table>
+<p>Actually as you can see <strong>it is not that cheap, considering the amount of salvaged parts</strong>. The most expensive parts are the Arduino (which you can build in a FabLab for 5 EUR), the power resistors and the sensor. You can get power resistors for 2 EUR each if you can wait for shipping time. But I needed them fast so I had to pay that much. Also there are other temperature sensors much cheaper, for no more than 5 EUR. So <strong>if you are not in a rush you coud build your own incubator for around 31 EUR</strong>.</p>
+<div class="figure">
+<img src="./img/w15/inside.png" />
+
+</div>
+<h2 id="what-i-learned">What I learned</h2>
+<p><strong>There are two interesting things happening when you are able to build your own biological open hardware</strong>. You don't do it for saving a few bucks, which is cool. The real value of building your own equipment is that <strong>you can automate biological processes with a machine that do not even exist commercially</strong>. This can lead to <strong>reducing the human error factor, which is quite high in biological experiments</strong> due to the ammount of manipulation. <strong>The second one is customization</strong>, you can add a timer to the incubator, a buzzer alarm, a shaking bed, a CO2 sensor or adapt the dimensions to whatever your needs are. <strong>All of this is impossible with commercial equipment</strong>.</p>
+<h2 id="assignment-review">Assignment review</h2>
+<p>On Wednesdays we always have a review session of last week's assignment. Here is the link to this week <a href="https://vimeo.com/148381495">assignments review</a>.</p>
+<hr />
+<h2 id="home"><a href="./w13.html">&lt;&lt;</a> <a href="./index.html">home</a> <a href="./w16.html">&gt;&gt;</a></h2>
+</body>
+</html>

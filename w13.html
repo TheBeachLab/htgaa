@@ -1,0 +1,184 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+  </style>
+  <link rel="stylesheet" href="base.css" type="text/css" />
+</head>
+<body>
+<div class="figure">
+<img src="./img/FabLab.svg" />
+
+</div>
+<h1 id="week-13.-bio-molecule-sensors">Week 13. Bio molecule sensors</h1>
+<h2 id="lecture-video">Lecture video</h2>
+<p>Link to the <a href="https://vimeo.com/146156498">video lecture</a></p>
+<h2 id="assignment-run-the-rosetta-protein-structure-prediction-simulations-and-analyze-the-results">Assignment: Run the Rosetta protein structure prediction simulations and analyze the results</h2>
+<h3 id="molecule-viewers-review">Molecule viewers review</h3>
+<p>For this assignment I will install and review all three molecule viewers. First I installed <strong>RasMol 2.7.5.2 (GTK version)</strong> from the Ubuntu software center. Also I <a href="http://pymol.org/">requested an educational license</a> of <strong>PyMOL 1.7.4</strong> for Linux 64 bit (automatic process where you will obtain a user and password to download it). Extract PyMOL and run it from the created folder in a terminal window <code>./pymol</code>. Finally I <a href="https://www.cgl.ucsf.edu/chimera/">downloaded</a> <strong>Chimera 1.10.2</strong> for Linux 64 bit. The installation process of Chimera in Ubuntu is slightly different since it is a <code>.bin</code> file. You have to allow execution of the file (either with <code>chmod 755 chimera_filename.bin</code> or changing the permissions in File Properties) and then running <code>./chimera_filename.bin</code> in a terminal window. Also running Chimera is a bit messy since you have to run it from where the program is installed, in my case <code>~/.local/UCSF-Chimera64-1.10.2/bin/chimera</code>.</p>
+<p>In terms of the installation process, RasMol is much easier and convenient to install than the others. And you don't need to mess with educational licenses requests. Regarding the interface, that is, the GUI, PyMOL looks awkward with so many windows and options. Chimera has in my opinion a better arrangement of the options but the window management system looks like <a href="https://en.wikipedia.org/wiki/Motif_Window_Manager">Motif</a> from the 80's or even older. But when it comes to features and visual quality of the molecules RasMol starts loosing many points. Chimera has by far the best visual quality followed by PyMOL. In features probably both are similar but I feel them easier to find in Chimera. Overall, this is my personal comparison table for all three:</p>
+<table>
+<thead>
+<tr class="header">
+<th>Aspect</th>
+<th>RasMol</th>
+<th>PyMOL</th>
+<th>Chimera</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Installation</td>
+<td>Easy</td>
+<td>Normal</td>
+<td>Annoying</td>
+</tr>
+<tr class="even">
+<td>GUI</td>
+<td>Nice</td>
+<td>Messy</td>
+<td>Old</td>
+</tr>
+<tr class="odd">
+<td>Features</td>
+<td>Fewer</td>
+<td>Many</td>
+<td>Many</td>
+</tr>
+<tr class="even">
+<td>Visual quality</td>
+<td>Poor</td>
+<td>Good</td>
+<td>Very good</td>
+</tr>
+</tbody>
+</table>
+<p>My personal pick for this assignment? <strong>Chimera</strong>. Also installed <a href="https://fold.it">Foldit</a>, a protein folding game. But I still don't know why. I missed the lecture and I have to review the video in-depth.</p>
+<div class="figure">
+<img src="./img/w13/viewers.png" />
+
+</div>
+<h3 id="plot-the-score-or-energy-vs-rms-plot">Plot the score (or energy) vs rms plot</h3>
+<p>I'm starting with case <code>2HJJ</code>, so I modify the <code>abrelax_flags</code> file in this folder changing the path to the database folder relative to the abrelax file <code>-database ../database/</code>. I keep the number of models to 100 <code>-nstruct 100</code> to see how much time it takes. My hardware is Intel i5 M520 <span class="citation">@2.4GHz</span> x4 and 5.5Gb of RAM.</p>
+<p>I run <code>../executable/AbinitioRelax.static.linuxgccrelease @abrelax_flags</code> from terminal in the <code>2HJJ</code> folder. It is taking about 3 to 4 minutes to generate one model (each one of the <code>S_00000#.pdb</code> files) in my computer. So the estimated time for a hundred models should be 300 to 400 minutes (so about 5 to 6 hours). I'll come back later.</p>
+<p>(a few hours later...)</p>
+<p>It actually took 5 hours and 16 minutes to generate the 100 models, that makes an average of 3.16 minutes per model. I am now going to compute case <code>1WHZ</code> to generate as many models as I can until tomorrow Monday at 08:00. It is now Sunday 18:00, so I have 14 hours, that is 840 minutes. So 840/3.16=265 models using the same workflow as above.</p>
+<p>I don't understand. When I checked this morning at 8:00 only 225 models had been computed. In the end it took 16 hours and 18 minutes to generate them all, an average of 3.69 minutes per model. I was wondering why the average had changed until I heard an internal voice: <em>Because you are computing another model you moron</em>.</p>
+<p><strong>Let's plot the test cases</strong> now, I am going to use R for processing the scatterplot and <a href="http://texample.net/tikz/examples/tikzdevice-demo/">tikzDevice</a>, a R package for creating a nice output using <a href="http://www.texample.net/tikz/">TikZ</a>, which is something I used in the University when I was typesetting documents in <a href="https://www.latex-project.org/">LateX</a>. For that we first need to install something in <strong>R</strong>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">&gt;<span class="st"> </span><span class="kw">install.packages</span>(<span class="st">&quot;filehash&quot;</span>)
+&gt;<span class="st"> </span><span class="kw">install.packages</span>(<span class="st">&quot;tikzDevice&quot;</span>, <span class="dt">repos=</span><span class="st">&quot;http://R-Forge.R-project.org&quot;</span>)</code></pre></div>
+<p>The data file we want to plot is <code>score.fsc</code>, a text file containing a table whose cells are separated by blank characters. It has as many rows as models plus a header row and 29 columns. We are plotting column <code>score</code> vs column <code>rms</code>. I created a <strong>R</strong> script to generate a PDF plot for each test case:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># GENERAL</span>
+<span class="kw">require</span>(tikzDevice)
+<span class="co"># CASE 2HJJ</span>
+<span class="kw">setwd</span>(<span class="st">&quot;~/Downloads/w13/homework/structure_prediction/2HJJ/&quot;</span>)
+case2hjj &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="st">&quot;score.fsc&quot;</span>, <span class="dt">header =</span> <span class="ot">TRUE</span>)
+<span class="kw">tikz</span>(<span class="st">&#39;case2hjj.tex&#39;</span>,<span class="dt">standAlone =</span> <span class="ot">TRUE</span>, <span class="dt">width =</span> <span class="dv">5</span>,<span class="dt">height =</span> <span class="dv">5</span>)
+<span class="kw">plot</span> (case2hjj$rms, case2hjj$score, <span class="dt">main=</span><span class="st">&quot;Case 2HJJ (100 models)</span><span class="ch">\n</span><span class="st">Energy vs rms&quot;</span>, <span class="dt">xlab=</span><span class="st">&quot;rms (Angstrom)&quot;</span>, <span class="dt">ylab=</span><span class="st">&quot;Energy&quot;</span>, <span class="dt">pch=</span><span class="dv">3</span>)
+<span class="kw">dev.off</span>()
+tools::<span class="kw">texi2dvi</span>(<span class="st">&#39;case2hjj.tex&#39;</span>,<span class="dt">pdf=</span>T)
+<span class="co"># CASE 1WHZ</span>
+<span class="kw">setwd</span>(<span class="st">&quot;~/Downloads/w13/homework/structure_prediction/1WHZ/&quot;</span>)
+case1whz &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="st">&quot;score.fsc&quot;</span>, <span class="dt">header =</span> <span class="ot">TRUE</span>)
+<span class="kw">tikz</span>(<span class="st">&#39;case1whz.tex&#39;</span>,<span class="dt">standAlone =</span> <span class="ot">TRUE</span>, <span class="dt">width =</span> <span class="dv">5</span>,<span class="dt">height =</span> <span class="dv">5</span>)
+<span class="kw">plot</span> (case1whz$rms, case1whz$score, <span class="dt">main=</span><span class="st">&quot;Case 1WHZ (265 models)</span><span class="ch">\n</span><span class="st">Energy vs rms&quot;</span>, <span class="dt">xlab=</span><span class="st">&quot;rms (Angstrom)&quot;</span>, <span class="dt">ylab=</span><span class="st">&quot;Energy&quot;</span>, <span class="dt">pch=</span><span class="dv">3</span>)
+<span class="kw">dev.off</span>()
+tools::<span class="kw">texi2dvi</span>(<span class="st">&#39;case1whz.tex&#39;</span>,<span class="dt">pdf=</span>T)</code></pre></div>
+<p>To generate the plots yourself <a href="./files/w13/w13.R">download here</a> the script, adjust the paths and type <code>source(&quot;w13.R&quot;)</code> inside the <strong>R</strong> prompt.</p>
+<div class="figure">
+<img src="./img/w13/comparison.png" />
+
+</div>
+<p>Above are the graphics generated by the scripts, combined into a single image using the command line tool <code>montage -density 2000 -geometry 1000 case1whz.pdf case2hjj.pdf comparison.png</code></p>
+<h3 id="pick-the-lowest-energy-model-and-structurally-compare-it-to-the-native.-how-close-is-it-to-the-native-if-its-different-what-parts-did-the-computer-program-get-wrong.">Pick the lowest energy model and structurally compare it to the native. How close is it to the native? If its different, what parts did the computer program get wrong?.</h3>
+<h4 id="case-2hjj">Case 2HJJ</h4>
+<p>In the <strong>R</strong> environment, we can find the minimum value of the score column and where is it located with the commands <code>min</code> and <code>which.min</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">&gt;<span class="st"> </span><span class="kw">min</span>(case2hjj$score)
+[<span class="dv">1</span>] -<span class="fl">77.924</span>
+&gt;<span class="st"> </span><span class="kw">which.min</span>(case2hjj$score)
+[<span class="dv">1</span>] <span class="dv">44</span></code></pre></div>
+<p>So let's view case 44 using Chimera and compare it with the native molecule.</p>
+<div class="figure">
+<img src="./img/w13/case1.png" />
+
+</div>
+<h4 id="case-1whz">Case 1WHZ</h4>
+<p>We repeat the same steps as above for case 1WHZ. Remember that for this case we computed 265 models.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">&gt;<span class="st"> </span><span class="kw">min</span>(case1whz$score)
+[<span class="dv">1</span>] -<span class="fl">97.672</span>
+&gt;<span class="st"> </span><span class="kw">which.min</span>(case1whz$score)
+[<span class="dv">1</span>] <span class="dv">100</span></code></pre></div>
+<div class="figure">
+<img src="./img/w13/case3.png" />
+
+</div>
+<h3 id="pick-the-lowest-rms-model-and-structurally-compare-it-to-the-native.-how-close-is-it-to-the-native-if-its-different-how-is-it-different">Pick the lowest rms model and structurally compare it to the native. How close is it to the native? If its different, how is it different?</h3>
+<h4 id="case-2hjj-1">Case 2HJJ</h4>
+<p>As we did before, in the <strong>R</strong> environment, we can find the minimum value of the rms column and where is it located with the commands <code>min</code> and <code>which.min</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">&gt;<span class="st"> </span><span class="kw">min</span>(case2hjj$rms)
+[<span class="dv">1</span>] <span class="fl">4.843</span>
+&gt;<span class="st"> </span><span class="kw">which.min</span>(case2hjj$rms)
+[<span class="dv">1</span>] <span class="dv">8</span></code></pre></div>
+<p>Viewing case 8 using Chimera and comparing it with the native molecule.</p>
+<div class="figure">
+<img src="./img/w13/case2.png" />
+
+</div>
+<h4 id="case-1whz-1">Case 1WHZ</h4>
+<p>We repeat the same steps as above for case 1WHZ. Remember that for this case we computed 265 models.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">&gt;<span class="st"> </span><span class="kw">min</span>(case1whz$rms)
+[<span class="dv">1</span>] <span class="fl">5.485</span>
+&gt;<span class="st"> </span><span class="kw">which.min</span>(case1whz$rms)
+[<span class="dv">1</span>] <span class="dv">223</span></code></pre></div>
+<div class="figure">
+<img src="./img/w13/case4.png" />
+
+</div>
+<h2 id="conclussion">Conclussion</h2>
+<p>What it can be appreciated is that the <strong>lowest rms models are more accurate than the lower energy models</strong>. Actually some low energy models share very little in common with the real model.</p>
+<h2 id="assignment-review">Assignment review</h2>
+<p>On Wednesdays we always have a review session of last week's assignment. Here is the link to this week <a href="https://vimeo.com/147616270">assignments review</a>.</p>
+<hr />
+<h2 id="home"><a href="./w12.html">&lt;&lt;</a> <a href="./index.html">home</a> <a href="./w15.html">&gt;&gt;</a></h2>
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="base.css" type="text/css" />
+</head>
+<body>
+<div class="figure">
+<img src="./img/FabLab.svg" />
+
+</div>
+<h1 id="videoconferencing">Videoconferencing</h1>
+<p>I want to share the way I was connecting to the MIT's CBA videoconferencing system because:</p>
+<ol style="list-style-type: decimal">
+<li>It took me a lot of time to have it working properly.</li>
+<li>I couldn't find it well documented anywhere.</li>
+</ol>
+<p>This is my setup. Remember I am using Ubuntu. For Mac OS X or Windows operating systems all of these might be different or even not work at all.</p>
+<h2 id="installing-and-running-linphone">Installing and running Linphone</h2>
+<p>After using several apps like Ekiga I am finally using Linphone. Ekiga crashed several times in my computer. Sometimes it didn't even show me the remote video, or my local video. I found it quite unstable, but Neil keeps recommending it in a Chromebook environment. Installing the latest release of Linphone in Ubuntu is easy typing in a terminal window:</p>
+<pre><code>sudo add-apt-repository ppa:linphone/release
+sudo apt-get update
+sudo apt-get install linphone</code></pre>
+<p>After installation just type <code>linphone</code> in a terminal window to execute it.</p>
+<h2 id="configuration">Configuration</h2>
+<p>The image shown below is the main window that appears after executing Linphone. In here you can type a <strong>SIP</strong> address and press the <em>call button</em> to connect, but it is preferable that you create a new contact, since you will be calling the videoconferencing system several times:</p>
+<div class="figure">
+<img src="./img/video/linphone.png" />
+
+</div>
+<p>In the contact window create the following contacts. The address for the main menu screen in the MCU is <code>sip:mcu.cba.mit.edu</code> if you are connecting from a lab or <code>sip:mcuc.cba.mit.edu</code> (note the <strong>c</strong>) if you connecting as an individual. In the main menu you can select which room to join using the <em>keypad</em> (see later below). You can also create a direct access to class room 4 (the lectures channel) adding <code>4@</code> after <code>sip:</code>. This is very convenient since you can save time when reconnecting. Just remember that if you are connecting from a lab create <code>sip:4@mcu.cba.mit.edu</code>, if you are connecting as an individual use <code>sip:4@mcuc.cba.mit.edu</code> (note the <strong>c</strong>) instead.</p>
+<div class="figure">
+<img src="./img/video/contact.png" />
+
+</div>
+<p>It is now time to configure the connection. With the main window focused go to <code>Options/Preferences</code> in the menu bar. A new window with several tabs will appear. The first one is the <strong>Manage SIP Accounts tab</strong>. In this tab it is strongly recommended that you run the <em>wizard</em> to create a proxy account on linphone.org, because many routers have blocked ports that you need to connect. You can also choose here <strong>the name that will be shown to other participants</strong>.</p>
+<div class="figure">
+<img src="./img/video/Settings_1.png" />
+
+</div>
+<p>In the <strong>Multimedia settings tab</strong> select the specific hardware that you might have like the Logitech C920 Camera or the Echo Cancelling microphone from the inventory, if you have them. <strong>In case your microphone already has a built in echo cancellation disable the <em>Enable echo cancellation</em> option</strong>.</p>
+<div class="figure">
+<img src="./img/video/Settings_2.png" />
+
+</div>
+<p>In the <strong>Network settings tab</strong> check <em>Set Maximum Transmission Unit</em> acording to your upload speed. If you have a 1 Mbps upstream connection it would be safe to leave this a 700:</p>
+<div class="figure">
+<img src="./img/video/Settings_3.png" />
+
+</div>
+<p>Finally in the <strong>Codecs tab</strong>, make sure that you have enabled the H264 codec.</p>
+<div class="figure">
+<img src="./img/video/Settings_4.png" />
+
+</div>
+<h2 id="connecting-to-class">Connecting to Class</h2>
+<p>Connect to the class clicking in your Class 4 contact or typing in the address bar:</p>
+<p><code>sip:4@mcu.cba.mit.edu</code></p>
+<div class="figure">
+<img src="./img/video/pin.png" />
+
+</div>
+<p>And enter the <strong>PIN</strong> number followed by the pound key <strong>#</strong>, not using your keyboard but the keypad window (to show the keypad window go to <code>Options/Show Keypad</code> in the menu bar). Please do not ask me for the PIN number. This number will be given to you by your local or remote tutor when you join the course. PINs for <code>mcu</code> (lab connection) and <code>mcuc</code> (individual connection) are different.</p>
+<div class="figure">
+<img src="./img/video/keypad.png" />
+
+</div>
+<h2 id="muting-and-unmuting">Muting and unmuting</h2>
+<p>By default, when you enter the class room <strong>you are muted remotely</strong>. A good practice when you enter ther room is muting locally and then toggle between remote mute and remote unmute dialing <code>*6</code> using the keypad.</p>
+<p>Then you only have to unmute locally when you need to talk. Remember to mute locally right after you finish talking.</p>
+<h2 id="modifying-the-layout">Modifying the layout</h2>
+<p>You can modify the layout using the keypad. Keys <code>2</code> and <code>8</code> will modify the layout while keys <code>4</code> and <code>6</code> will change the main participant (usually the biggest) in the layout.</p>
+<div class="figure">
+<img src="./img/video/class.png" />
+
+</div>
+</body>
+</html>

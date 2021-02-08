@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="base.css" type="text/css" />
+</head>
+<body>
+<div class="figure">
+<img src="./img/FabLab.svg" />
+
+</div>
+<h1 id="week-3.-synthetic-minimal-cells">Week 3. Synthetic Minimal Cells</h1>
+<h2 id="lecture-video">Lecture video</h2>
+<p>Link to the <a href="https://vimeo.com/138767343">video lecture</a></p>
+<h2 id="lab-assignment-express-gfp-in-cell-free-system">Lab assignment: Express GFP in cell free system</h2>
+<p>For the lab assignment we went for the <strong>Cell free Tx/Tl system developed by Vincent Noireaux</strong>. Their lab was so kind to sponsor the Tx/Tl system and we only had to pay for the shipping. Shipping though, was quite expensive (around 400 EUR per lab, but we shared the expenses among many labs). Actually the package that was shipped to every lab could be used to perform several experiments, so for next year maybe it's a good idea to share it across labs in a region. I was quite surprised when Nuria opened the -80ºC freezer and I saw that <em>the thing</em> they sent to us was less than a water drop. I was expecting something bigger, like one bottle of product.</p>
+<p><img src="./img/w03/freezer.jpg" /> <strong>Documentation tip:</strong> to concatenate 2 or more images like the one above you can use the package graphicsmagick <code>gm convert image1.png image2.jpg image3.jpg -geometry x400 +append resulting_image.jpg</code>.</p>
+<p>The <strong>protocol</strong> is quite simple. The protocol is the instructions on how to do the experiment, you will see quite a lot of these during HTGAA. Some of them are very long:</p>
+<blockquote>
+<ol style="list-style-type: decimal">
+<li>Thaw the enzyme mix on ice (or in the fridge) immediately before use.</li>
+<li>For 10uL reaction: use 7.5uL of enzyme mix, x<em>uL DNA vector to the final concentration 5nM, add water to the final reaction volume. </em>We will know what's the stock c of DNA vector soon</li>
+<li>Mix by gently pipetting up and down several times. Do not vortex.</li>
+<li>Incubate at 29-30C for minimum of 2 hours, ideally longer - 4h.</li>
+<li>Analyze GFP fluorescence immediately. The fluorescence of GFP can be analyzed in the reaction mix, without purification. Use Nanodrop, or small volume cuvette fluorimeter. Scale appropriately if needed.</li>
+</ol>
+</blockquote>
+<p>Then we tried to detect the GFP positive control under a UV lamp in the PRBB Lab but we could not tell any difference at all. Then we used the fluorescence microscope and could see how the positive control was glowing and the negative control wasn't glowing. I didn't understand why, but it was amazing!</p>
+<div class="figure">
+<img src="./img/w03/smc.jpg" />
+
+</div>
+<h2 id="design-assignment-design-synthetic-cell-biosensor-reactor-or-actuator">Design Assignment: Design synthetic cell biosensor, reactor or actuator</h2>
+<h3 id="pick-a-function">Pick a function</h3>
+<p>Since we are at <a href="http://beachlab.org">The Beach Lab</a>, and the sea is just opposite the lab, <strong>I chose a biosensor for detecting heavy metal ions in sea water</strong>.</p>
+<h3 id="what-would-your-synthetic-cell-do-what-is-the-input-and-what-is-the-output">What would your synthetic cell do? What is the input and what is the output</h3>
+<p>The input is the heavy metal ion we want to detect and the output is a metal binding protein that will trap metal ions.</p>
+<h3 id="could-this-function-be-realized-by-cell-free-txtl-alone-without-encapsulation">Could this function be realized by cell free Tx/Tl alone, without encapsulation?</h3>
+<p>No, I don't think so.</p>
+<h3 id="could-this-function-be-realized-by-genetically-modified-natural-cell">Could this function be realized by genetically modified natural cell?</h3>
+<p>Yes, in theory it could be possible.</p>
+<h3 id="describe-the-desired-outcome-of-your-synthetic-cell-operation">Describe the desired outcome of your synthetic cell operation</h3>
+<p>A marker that reacts ans show us when the synthetic minimal cell is expressing the binding protein due to the presence of the heavy metal.</p>
+<h3 id="design-all-components-that-would-need-to-be-part-of-your-synthetic-cell.-what-would-be-the-membrane-made-of">Design all components that would need to be part of your synthetic cell. What would be the membrane made of?</h3>
+<p>A <a href="https://en.wikipedia.org/wiki/Phospholipid">Phospholipid</a> membrane.</p>
+<h3 id="what-would-you-encapsulate-inside">What would you encapsulate inside?</h3>
+<p>ATP for energy transformation, DNA, mRNA.</p>
+<h3 id="which-organism-your-txtl-system-will-come-from-is-bacterial-ok-or-do-you-need-mammalian-system-for-some-reason">Which organism your tx/tl system will come from? is bacterial OK, or do you need mammalian system for some reason?</h3>
+<blockquote>
+<p><strong>Hint:</strong> For example, if you want to use small molecule modulated promotors, like Tet-ON, you need mammalian)</p>
+</blockquote>
+<p>Bacterial is OK.</p>
+<h3 id="how-will-your-synthetic-cell-communicate-with-the-environment">How will your synthetic cell communicate with the environment?</h3>
+<blockquote>
+<p><strong>Hints:</strong> Are substrates permeable? or do you need to express membrane channel?</p>
+</blockquote>
+<p>With Green Fluorescent Protein (<a href="https://en.wikipedia.org/wiki/Green_fluorescent_protein">GFP</a>).</p>
+<h3 id="experimental-details.-how-will-you-measure-the-function-of-your-system">Experimental details. How will you measure the function of your system?</h3>
+<p>With a fluorescence microscope.</p>
+<h2 id="what-i-learned">What I learned</h2>
+<p>This lab experiment is easier than it looks. A normal fab lab can execute this experiment, <strong>there is no need for a -80ºC freezer</strong> if you proceed immediately when the package arrives. The pipetting step only takes around 20 minutes to complete.</p>
+<h2 id="assignment-review">Assignment review</h2>
+<p>On Wednesdays we always have a review session of last week's assignment. Here is the link to this week <a href="https://vimeo.com/139480382">assignments review</a>.</p>
+<hr />
+<h2 id="home"><a href="./w02.html">&lt;&lt;</a> <a href="./index.html">home</a> <a href="./w04.html">&gt;&gt;</a></h2>
+</body>
+</html>

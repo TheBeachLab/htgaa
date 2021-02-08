@@ -1,0 +1,125 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+  </style>
+  <link rel="stylesheet" href="base.css" type="text/css" />
+</head>
+<body>
+<div class="figure">
+<img src="./img/FabLab.svg" />
+
+</div>
+<h1 id="writing-documentation">Writing documentation</h1>
+<p>During <a href="http://fabacademy.org/archives/2013/students/sanchez.francisco/">my Fab Academy 2013 experience</a> I wrote my documentation in HTML, which actually took me a lot of time because there are all these tags that you have to open and remember to close like:</p>
+<div class="sourceCode"><pre class="sourceCode html"><code class="sourceCode html"><span class="kw">&lt;h1&gt;</span>This is the title<span class="kw">&lt;/h1&gt;</span>
+<span class="kw">&lt;p&gt;</span>This is a paragraph with some <span class="kw">&lt;strong&gt;</span>bold<span class="kw">&lt;/strong&gt;</span> text.<span class="kw">&lt;/p&gt;</span>
+<span class="kw">&lt;ul&gt;</span>
+    <span class="kw">&lt;li&gt;</span>This is first item of unordered list<span class="kw">&lt;/li&gt;</span>
+    <span class="kw">&lt;li&gt;</span>This is second item<span class="kw">&lt;/li&gt;</span>
+<span class="kw">&lt;/ul&gt;</span></code></pre></div>
+<p>So for HTGAA I took a different approach. I wrote all my documentation in <strong>markdown</strong> format. The same thing as above looks like this in markdown:</p>
+<div class="sourceCode"><pre class="sourceCode md"><code class="sourceCode markdown"><span class="fu"># This is the title</span>
+This is a paragraph with some **bold** text.
+* <span class="fl">This is first item of unordered list</span>
+<span class="fl">* This is second item</span></code></pre></div>
+<p>Here's how I did it, just in case you want to replicate.</p>
+<h2 id="about-markdown">About markdown</h2>
+<p>Markdown is a rising tendence when it comes to write documentation because it is very <strong>easy to write</strong>, very <strong>easy to read</strong> and you can also <strong>easily export to HTML</strong> and other formats. In markdown you focus more in the content and much less in code tags which are prone to syntax errors.</p>
+<p>A Markdown document is just a plain text file usually appended with a <code>.md</code> extension. It will only take you about 10 minutes to learn the basics following <a href="https://help.github.com/articles/markdown-basics/">this tutorial</a>.</p>
+<h2 id="my-workflow">My workflow</h2>
+<p>The process of writing the documentation involves typing the documentation in markdown, exporting to HTML using pandoc with a css template, and pushing the documentation to github. You can do all of these things manually but I automated them in a shell script.</p>
+<p>An alternative workflow would be using an online tool like <a href="https://stackedit.io/">Stackedit.io</a>. This is not described here, but is it worth having a look at it.</p>
+<h3 id="disclaimer">Disclaimer</h3>
+<p>The following instructions are valid for Ubuntu. If you have Windows or Mac OS X operating systems these could be different or even not work at all.</p>
+<h3 id="what-is-needed">What is needed</h3>
+<p>You first need a text editor. I use <a href="https://atom.io/">Atom</a> because it is Open Source and also has built in markdown preview. To activate the markdown preview in Atom clic on <em>Packages/Markdown Preview/Toggle Preview</em>.</p>
+<div class="figure">
+<img src="./img/doc/atom.png" />
+
+</div>
+<p>To convert <code>.md</code> files to <code>.html</code> files <del>you need</del> I use a command line tool called <strong>pandoc</strong>. In Ubuntu you can install pandoc by typing this in the terminal:</p>
+<p><code>sudo apt-get install pandoc</code></p>
+<p>When you export to HTML, by default pandoc will export it unstyled, just like a normal HTML file written from scratch. But you can style your HTML using CSS. Styling HTML is recommended not only because it looks nicer but also because styling can make it easier and more pleasant to read. Which I consider an important feature for the documentation. Instead of writing your own <code>css</code> file from scratch, what I recommend is modifying one of the many available <code>css</code> files for pandoc, or use <a href="http://git.fabcloud.io/francisco/beach-lab-htgaa-2015/blob/master/students/sanchez.francisco/base.css">the one I use</a>.</p>
+<blockquote>
+<h3 id="some-tips-learned-the-hard-way">Some tips learned the hard way</h3>
+<p>Standard markdown syntax does not require a blank line before a header. Pandoc does require this (except, of course, at the beginning of the document). The reason for the requirement is that it is all too easy for a # to end up at the beginning of a line by accident (perhaps through line wrapping).</p>
+<p>If you need a hard line break, put two or more spaces at the end of a line.</p>
+</blockquote>
+<h3 id="automating-everything">Automating everything</h3>
+<p>Some people tells me why I keep using command line tools like pandoc. It is because I consider automation the <strong>real power of comand line tools</strong>. You want to automate <del>because you are lazy bastard like me, admit it</del> in order to avoid typing all these commands in terminal over and over and also in order to speed up the process of file conversion and uploading to the server.</p>
+<p>All you need to do is to create a new plain text file and name it something like <code>auto.sh</code> (for <em>shell script</em>) where you will write a sequence of commands. Those will be the very same commands that you would type in the terminal one by one.</p>
+<p>This tutorial assumes that you have all the markdown <code>.md</code> and css <code>.css</code> files together in the root of your student folder - which is inside the lab folder containing the github repository. Otherwise just adjust the paths accordingly. The contents of the <code>auto.sh</code> file should be similar to this:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="co"># Automation file</span>
+<span class="co"># Step 1. File conversion from .md to .html</span>
+<span class="ot">FILES=</span><span class="kw">*.md</span>
+<span class="kw">for</span> <span class="kw">f</span> in <span class="ot">$FILES</span>
+<span class="kw">do</span>
+  <span class="co"># extension=&quot;${f##*.}&quot;</span>
+  <span class="ot">filename=</span><span class="st">&quot;</span><span class="ot">${f%</span>.*<span class="ot">}</span><span class="st">&quot;</span>
+  <span class="kw">echo</span> <span class="st">&quot;Converting </span><span class="ot">$f</span><span class="st"> to </span><span class="ot">$filename</span><span class="st">.html&quot;</span>
+  <span class="kw">`pandoc</span> -s -c base.css <span class="ot">$f</span> -t html -o <span class="ot">$filename</span>.html<span class="kw">`</span>
+<span class="kw">done</span>
+<span class="co"># Step 2. Uploading everything to github</span>
+<span class="co"># If there is commit message then upload</span>
+<span class="kw">if [</span> <span class="st">&quot;</span><span class="ot">$#</span><span class="st">&quot;</span> <span class="ot">-gt</span> 0<span class="kw"> ]</span>
+<span class="kw">then</span>
+    <span class="kw">cd</span> .. <span class="co"># Now in students folder</span>
+    <span class="kw">cd</span> .. <span class="co"># Now in lab folder</span>
+    <span class="kw">git</span> pull
+    <span class="kw">git</span> add --all
+    <span class="kw">git</span> commit -m <span class="st">&quot;</span><span class="ot">$*</span><span class="st">&quot;</span>
+    <span class="kw">git</span> push
+<span class="kw">else</span>
+    <span class="kw">echo</span> <span class="st">&quot;Not uploading (Empty commit message)&quot;</span>
+<span class="kw">fi</span></code></pre></div>
+<p>Please note that the <code>git commit</code> line contains a <code>$*</code>. This is important since we will <a href="http://osr600doc.sco.com/en/SHL_automate/_Passing_to_shell_script.html">pass the commit message as an argument</a> when we execute the script. Now it comes the easy part. After you type all your documentation you open a new terminal inside your student folder that contains <code>auto.sh</code> file and type:</p>
+<p><code>sh auto.sh</code></p>
+<p>And it search for all the <code>.md</code> files in your folder and will convert them to HTML, overwriting if they already existed. But <strong>if you also write a commit message</strong> like this:</p>
+<p><code>sh auto.sh this will be the commit message</code></p>
+<p>This will convert all the markdown documentation to HTML <strong>and</strong> upload the documentation to your repository.</p>
+<h2 id="open-source">Open Source</h2>
+<p>Finally <strong>remember that my documentation is open source</strong>, under the <a href="http://www.wtfpl.net/">WTFPL license</a>, so you can clone it, fork it and modify it as you like. I'm just asking for a miserable link to my page in your credits section.</p>
+<p>Finally if you make several million dollars with all the things I share, consider inviting me to one of your private jet parties in the middle of the Ocean full of DJ's, drinks and so.</p>
+</body>
+</html>

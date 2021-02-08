@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="base.css" type="text/css" />
+</head>
+<body>
+<div class="figure">
+<img src="./img/FabLab.svg" />
+
+</div>
+<h1 id="week-5.-bio-production">Week 5. Bio Production</h1>
+<h2 id="lecture-video">Lecture video</h2>
+<p>Link to the <a href="https://vimeo.com/140203045">video lecture</a></p>
+<h2 id="last-week-assigment-review">Last week Assigment Review</h2>
+<p>This week I am following the class from the Green Fab Lab, a fab lab located in the mountains of Barcelona. I arrived late and the review had already started. They have a really good bandwith because they are connected to a service called guifi.net with a directional antenna with someone from Ripollet. Crazy. Last week was about Next Generation Synthesis. Almost no one really did the assignments. Assignment number one only the Swiss as I can see. They look really proficient, they have quite a equipped bio lab and they know what their are doing. Not like us. Assignment number two, no one did it.</p>
+<p>The second assignment was about designing DNA, then splitting it in small chunks that you can buy but you have to design these chunks so that you can you overlap at least 20 base pairs. But 80 base pairs are recommended. The goal is ordering (buying) these DNA segments.</p>
+<blockquote>
+<p><strong>NOTICE:</strong> This is getting really hard to follow now</p>
+</blockquote>
+<h2 id="goal">Goal</h2>
+<p>The goal this week is to engineer metabolism.</p>
+<p>Patrick Boyle is giving us the lecture today. He's from Ginko Bioworks, a company which engineers microbes like those used for making beer and typical commercial applications of this is tnew o produce different outputs like flavours or fragances.</p>
+<p>There are three main steps. Design, build and test. The price per Base pair of Synthetic DNA is decreasing faster than Moore Law, lower than 0.1 USD per basepair currently. Machines is difficult to replicate for community lab because of the cost. Designing Biology is hard and success means failing a lot. An interesting question that someone made. What is the time scale from customer demand to have something to produce? It obviously depends but current time scale is around 6 months.</p>
+<p>Part I. Connecting the dots. Two important concepts here are <strong>Chassis</strong> and <strong>Pathway</strong>. Chassis is the microorganism to be engineered. The selection depends upon some factors. Some typical chassis are Escheria and Saccha. A pathway is the biosynthetic route from a feedstock (like sugar) to the end product. There are 3 ways to design this. Combinations of existing pathways (the easiest) to engineering of existing pathways (harder) to de novo pathway design(the hardest). We will be focusing in the first one for the assignment. In practice there are resources like biocyc and kegg that combine literature and bioinformatics to map all known metabolism. How do we make pathway design and engineering process? Biology evolved once and all plants share most of the metabolism. Many properties emerge from combinatorial chemistry.</p>
+<p>Part II. Getting parts. Evolution made our parts bin. So Enzymes and similar and we can move a enzyme from one specie to another. But why mix and match enzymes from different species? Some things may not work as expected. Evolution can be leveraged to source most bilogical parts. Sources like Uniprot.org they have curated enzyme information of you can search via sequence homology e.g. PSI_BLAST.</p>
+<p>Part III. Optimization and tuning. There is a lot of work to do after you find the correct enzyme. Biology gives hints on how things are going to work. COBRA is an open source software. A couple of final thoughts. One is you can reprogram chassis pathways to serve your goals like producing more of a given product. And second is directed evolution. Mutations isn't easy to control but you get what you screen (selecting those that have more of a property you want) for.</p>
+<h2 id="assignment">Assignment</h2>
+<h3 id="design-a-biosynthetic-strategy-for-a-compound-of-your-choice.">Design a biosynthetic strategy for a compound of your choice.</h3>
+<blockquote>
+<p>Example: lycopene. Start from the end and work backwards. Or in biocyc there is a goal compound and hit search. Suggested molecules for the assignment: limonene, beta-carotene and violacein.</p>
+</blockquote>
+<p>Chassis: Escherichia coli</p>
+<p>Using: <em>Keseler et al. (2013), &quot;EcoCyc: fusing model organism databases with systems biology&quot;, Nucleic Acids Research 41: D605-12.</em></p>
+<p>Researching and choosing a pathway: <a href="http://ecocyc.org/pwy-search.shtml" class="uri">http://ecocyc.org/pwy-search.shtml</a></p>
+<p>According to EcoCyc, Pathway: glycolysis II (from fructose 6-phosphate)</p>
+<p>According to KEGG, Pathway: <em>ko00010 Glycolysis / Gluconeogenesis</em></p>
+<div class="figure">
+<img src="./img/w05/3.png" />
+
+</div>
+<h4 id="general-background">General Background</h4>
+<p>Glycolysis, which was first studied as a pathway for the utilization of glucose, is one of the components of central metabolism, the other two being the pentose phosphate pathway and the TCA cycle. As such, its functioning is essential under all conditions of growth because it produces six ( β-D-glucose 6-phosphate, β-D-fructofuranose 6-phosphate, glycerone phosphate, 3-phospho-D-glycerate, phosphoenolpyruvate, and pyruvate) of the 13 precursor metabolites that are the starting materials for the biosynthesis of building blocks for macromolecules and other needed small molecules. Glycolysis can be found, if at least in part, in almost all organisms.</p>
+<p>Glycolysis has evolved to fulfill two essential functions:</p>
+<ol style="list-style-type: decimal">
+<li>it oxidizes hexoses to generate ATP, reductants and pyruvate, and</li>
+<li>being an amphibolic pathway (pathway that involves both catabolism and anabolism), it can reversibly produce hexoses from various low-molecular weight molecules.</li>
+</ol>
+<p>Because various degradation pathways feed into glycolysis at many different points, glycolysis or portions of it run in the forward or reverse direction, depending on the carbon source being utilized, in order to satisfy the cell's need for precursor metabolites and energy. This switching of direction is possible because all but two of the enzymatic reactions comprising glycolysis are reversible, and the conversions catalyzed by the two exceptions are rendered functionally reversible by other enzymes ( fructose-1,6-bisphosphatase and phosphoenolpyruvate synthetase) that catalyze different irreversible reactions flowing in the opposite direction.</p>
+<h4 id="about-this-pathway">About This Pathway</h4>
+<p>The standard glycolysis pathway ( glycolysis I (from glucose 6-phosphate)) depicts the sugar input into the pathway as glucose. However, the glycolysis pathway is utilized for the degradation of many different types of sugars.</p>
+<p>This partial depiction of the glycolysis pathway is used with substrates other than glucose, such as D-allose, L-sorbopyranose , D-mannitol , D-sorbitol , D-mannose and sucrose, which are processed into β-D-fructofuranose 6-phosphate. D-fructose-6-phosphate enters glycolysis and is processed to the end product pyruvate, which is often fermented further into fermentation products such as ethanol, lactate and acetate.</p>
+<h3 id="how-will-you-measure-product-formation">How will you measure product formation?</h3>
+<p>Measuring the glycolysis I (from glucose 6-phosphate): D-glucopyranose 6-phosphate ↔ β-D-fructofuranose 6-phosphate</p>
+<p>I will measure the CO2 and L-Lactate metabolism production.</p>
+<h3 id="what-chassis-enzymes-would-you-modify">What chassis enzymes would you modify?</h3>
+<p>I would modify: <strong>β-D-fructofuranose 6-phosphate</strong> (see the bottom of the next diagram).</p>
+<div class="figure">
+<img src="./img/w05/2.jpg" />
+
+</div>
+<p>Synonyms: D-fructose-6-phosphate, F6P, fructose-6P, fructose-6-P, fruc6p, fru-6-P, fructose-6-phosphate, A-D-fructose-6-P, D-fructose-6-P, D-fructose 6-phosphate, D-fructofuranose 6-phosphate</p>
+<p>Chemical Formula: C6H11O9P Molecular Weight: 258.12 Daltons Enzyme: EC 2.7.1.146</p>
+<p>Reaction(IUBMB) ADP + D-fructose 6-phosphate = AMP + D-fructose 1,6-bisphosphate</p>
+<p>Class: Transferases; Transferring phosphorus-containing groups; Phosphotransferases with an alcohol group as acceptor</p>
+<h2 id="assignment-review">Assignment review</h2>
+<p>On Wednesdays we always have a review session of last week's assignment. Here is the link to this week <a href="https://vimeo.com/140940181">assignments review</a>.</p>
+<hr />
+<h2 id="home"><a href="./w04.html">&lt;&lt;</a> <a href="./index.html">home</a> <a href="./w06.html">&gt;&gt;</a></h2>
+</body>
+</html>

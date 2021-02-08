@@ -1,0 +1,69 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="base.css" type="text/css" />
+</head>
+<body>
+<div class="figure">
+<img src="./img/FabLab.svg" />
+
+</div>
+<div class="figure">
+<img src="./img/final/hotrodnano.jpg" />
+
+</div>
+<h1 id="hot-rod-nano">Hot Rod Nano</h1>
+<h2 id="abstract">Abstract</h2>
+<p>Hot Rod Nano is a <strong>2 players arcade game featuring nature <em>vs</em> genetically modified Paramecium</strong>. With a locomotion efficiency of less than 1%, the Paramecium has a lot of potential for improvement. The skills used in the project are microfluidics, open hardware, next generation synthesis and synthetic development biology.</p>
+<h2 id="dragsters">Dragsters</h2>
+<p>The specie used for the project is <em>Paramecium Caudatum</em>, one of the biggest ones, oval shaped and measuring around 300 micrometers (0.3 mm) so that they are visible with a normal microscope. Paramecium can travel at 1000 µm/s <a href="http://hypertextbook.com/facts/2000/RossKrupnik.shtml">(Bray, Dennis. Cell Movements. New York: Garland, 1992.)</a>, so a typical race (50 mm) should take around a minute.</p>
+<h3 id="genetic-modification">Genetic modification</h3>
+<p>Since I am not biologist nor genetist this part of the final project is <strong>still under research phase</strong>. Also, <strong>I am not confident about being able to perform this modification</strong> with the time/funds/equipment limitations.</p>
+<p>If the <strong>Protozoa Rights Association</strong> does not sue me, the Paramecium will be genetically modified using Next Generation Synthesis techniques. Initially the goal of this modification was staining the cells so that I could distinguish the teams. But after a short talk with Nuria and Marc (our biologist and genetist) I later abandoned the idea because they said that even if I succeed it was going to be difficult to see the color. So now the goal of this modificiation is achieving faster speeds with faster movements, or longer cilia.</p>
+<p>The modified DNA will be introduced in the Paramecium using shotgun. The species that adopted the modification will also have an specific antibiotic resistance, so the ones who survive to that antibiotic environment will be the ones who incorporate the gene.</p>
+<h3 id="stain">Stain</h3>
+<p>For improved visualization and players diferenciation <strong>the Paramecium will be stained using food</strong>. According to <a href="http://www.parameciavap.com/paintedpar.html">the supplier</a>, the stain is not harmful for the Paramecium and will last for three days.</p>
+<div class="figure">
+<img src="./img/final/dye.jpg" />
+
+</div>
+<h2 id="race-tracks-iteration-2">Race tracks iteration 2</h2>
+<p>At the beginning, the race track were supposed to be two <strong>rectilinear and parallel <a href="./w12.html">microfluidics</a> channels and chambers</strong> with luers at the beginning and at the end. This is how the characterization at the beginning of the page was supposed to be. But then I changed my mind (kind of usual) and decided to do a small square <a href="./w09.html">paramecium device which I built for week 9</a> (and what by the way it didn't work and now the project requires iteration 3)</p>
+<div class="figure">
+<img src="./img/final/iteration2.jpg" />
+
+</div>
+<p>Later these race tracks were supposed to have <strong>different shapes</strong> and therefore be interchanged between the luers. In the future the game could evolve into a <em>Grand Prix Nano</em>.</p>
+<h3 id="culture-chip-microfluidic-design">Culture Chip microfluidic design</h3>
+<p>These have been <strong>parametrically designed</strong> in <a href="https://github.com/mkeeter/antimony">Antimony</a>, a software by Matt Keeter. The main design parameter is <strong>based on the size of the Paramecium</strong>.</p>
+<div class="figure">
+<img src="./img/w12/fabrication.jpg" />
+
+</div>
+<p><strong>The goal of this device is to grow separately the 2 species of genetically modified Paramecium with the same LB</strong>.</p>
+<p>I did not use any glue for the culture chip because the chemicals used in those products are toxic and could alter the grothw and speed of the racers.</p>
+<h2 id="gamepad">Gamepad</h2>
+<p>The players have game pads that <strong>electrically stimulate the movement</strong> of Paramecium.</p>
+<p>Inside the race tracks there are insets for 2 mm HB graphite bars from mechanical pencils, which connected to an attiny microcontroller. The buttons on the gamepad activate the microcontroller pins which electrically stimulate the Paramecium cilia.</p>
+<div class="figure">
+<img src="./img/final/diagram.jpg" />
+
+</div>
+<h3 id="electronics">Electronics</h3>
+<p>The gamepad control board has been designed using a legacy version of <a href="http://kokompe.cba.mit.edu/downloads.html">kokopelli</a>, also from Matt Keeter.</p>
+<h3 id="code">Code</h3>
+<p>The <strong>main challenge</strong> of the code, as we realized when we were doing the paramecium assignment <strong>is finding the correct PWM pulse</strong> that creates the appropiate behaviour in the paramecium.</p>
+<p>Paramecium swim slower when a voltage is applied. <strong>The more the voltage the more slow but the most rectilinear towards the negative electrode</strong>. So this combination of random and fast and precise but slow is a good feature that keeps the game so enjoyable.</p>
+<h2 id="open-hardware-tracking-broadcast-camera">Open hardware tracking broadcast camera</h2>
+<p>The race is broadcasted live through an follow me microscope, which consist in a Raspberry Pi equipped with a camera that follows a certain object using <a href="http://opencv.org/">OpenCV</a>. This will also</p>
+<h2 id="what-worked-and-what-didnt">What worked and what didn't</h2>
+<p>The paramecium devide did not work as expected because it was leaking everywhere. This was caused because I did not want to seal the seams with chemical products.</p>
+<p>The gamepad and paramecium as shown is <a href="./w09.html">week 9 video</a> works very well and it is very fun to play. But sometimes I feel bad about the poor Paramecium. I wonder if they feel pain when we play with them.</p>
+<p>I could not acquire the required knowledge to genetically modify the Paramecium. Actually Marc and Nuria, our biologists in this challenge told me that this is far more complex than genetically modify a bacteria like e-coli or yeast because of the complexity of the organism.</p>
+</body>
+</html>

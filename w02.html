@@ -1,0 +1,385 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+  </style>
+  <link rel="stylesheet" href="base.css" type="text/css" />
+</head>
+<body>
+<div class="figure">
+<img src="./img/FabLab.svg" />
+
+</div>
+<h1 id="week-2.-dna-nanostructures">Week 2. DNA Nanostructures</h1>
+<h2 id="lecture-video">Lecture video</h2>
+<p>Link to the <a href="https://vimeo.com/138102676">video lecture</a></p>
+<h2 id="cadnano">caDNAno</h2>
+<p><strong>caDNAno</strong> is a platform independent, free and open source software for designing three-dimensional DNA origami nanostructures. It was originally created by <a href="http://www.shawndouglas.com/">Shawn Douglas</a> at Harvard. Our tutor this week, William Shih recommended us to use the <a href="http://cadnano.org/legacy">legacy</a> version, but it was based on Adobe Air, which does not run on Ubuntu, not even under Wine. So I decided to go with <a href="https://github.com/cadnano/cadnano2.5">caDNAno 2.5</a> version instead.</p>
+<h4 id="installation-hell-process">Installation <del>hell</del> process</h4>
+<p><strong>Note: This was written for Ubuntu in december 2015. Probably this will be outdated by HTGAA'16.</strong> Clone the github repository to you computer. Cloning is recommended <em>vs</em> downloading because caDNAno is under development. In a terminal window, navigate to the folder where you want the caDNAno folder to be placed and type:</p>
+<p><code>git clone https://github.com/cadnano/cadnano2.5.git</code></p>
+<p>Inside that folder <code>cd cadnano2.5</code> I followed the instructions and executed the check <code>sudo python pyqt5_check.py</code>. But I was getting some errors, so <a href="https://github.com/cadnano/cadnano2.5/issues/74">I raised an issue to github</a> and the developers updated the master branch, which solved the problem (If something does not work find out what's the problem. Do not give up). In my case I also had to specify to use python 3 instead of python 2: <code>sudo python3 pyqt5_check.py</code> and install the following packages to make it work:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">sudo</span> apt-get install libqt5webkit5-dev
+<span class="kw">sudo</span> apt-get install python3-pyqt5.qtsvg
+<span class="kw">sudo</span> apt-get install python3-pyqt5.qtwebkit</code></pre></div>
+<h4 id="running-cadnano">Running caDNAno</h4>
+<p>Running caDNAno just open a terminal window inside the caDNAno folder and type <code>python3 bin/main.py</code></p>
+<h4 id="updating-cadnano">Updating caDNAno</h4>
+<p>As I said before, caDNAno is under active development so expect updates and bugfixes over time. From time to time just open a terminal inside the folder where caDNAno is installed and type <code>git pull</code>. This will update caDNAno.</p>
+<h2 id="assignment">Assignment</h2>
+<h3 id="build-flattened-rothemund-rectangle-in-cadnano">Build flattened Rothemund rectangle in caDNAno</h3>
+<p>In 2006 <a href="http://www.dna.caltech.edu/~pwkr/">Paul W.K. Rothemund</a>, a Research Professor at Caltech (USA), In 2006, reported a <a href="http://www.nature.com/nature/journal/v440/n7082/abs/nature04586.html">method of creating nanoscale shapes and patterns using DNA</a>. This method is called DNA Origami.</p>
+<p>The following image is the output that is obtained and it has been generated from caDNAno exporting to <code>.svg</code> file format. <img src="./img/w02/rectangle.svg" /><br />
+You can also <a href="./files/w02/rectangle.json">download</a> as a <code>.json</code> file.</p>
+<h3 id="generate-staple-strand-sequences-in-cadnano">Generate staple strand sequences in caDNAno</h3>
+<p>This is just a matter of exporting the design file. Output: list of sequences in tab delimited text file</p>
+<pre><code>Start,End,Sequence,Length,Color
+0[87],1[71],CAAGAGTCCACTATTAAAGAACGTACAGGAAA,32,#b8056c
+0[119],1[103],AGATAGGGTTGAGTGTTGTTCCAGTTTGACGC,32,#f74308
+0[151],1[135],AAAATCCCTTATAAATCAAAAGAACATTGGC,31,#03b6a2
+0[183],1[167],AAATCCTGTTTGATGGTGGTTCCGGTAAAGCC,32,#57bb00
+0[215],1[199],GCGGTCCACGCTGGTTTGCCCCAGACTCACAT,32,#03b6a2
+0[247],1[231],TCACCGCCTGGCCCTGAGAGAGTCTTTCCAG,31,#aaaa00
+0[279],1[263],CACCAGTGAGACGGGCAACAGCTGGCATTAAT,32,#007200
+1[72],3[71],AACGCTCATTTTTGAATGGCTATTGTATTAAC,32,#f74308
+1[104],3[103],TCAATCGTGAAAGCGTAAGAATACGAGAGCCA,32,#f74308
+1[136],3[135],AGATTCACTGGCCAACAGAGATTCACCTTG,30,#333333
+1[168],3[167],TGGGGTGCGCCGGAAGCATAAAGTGCGCAACT,32,#007200
+1[200],3[199],TAATTGCGTTATCCGCTCACAATTGCCTCTTC,32,#03b6a2
+1[232],3[231],TCGGGAACATGGTCATAGCTGTGGGATGTG,30,#57bb00
+1[264],3[263],GAATCGGCGGATCCCCGGGTACCGACGCCAGG,32,#1700de
+2[87],0[88],AGACAATATGGAAATACCTACATTTTGGAA,30,#007200
+2[119],0[120],TCTGACCTCTGAAATGGATTATTTATAGCCCG,32,#333333
+2[151],0[152],GGGACATTCCAGTCACACGACCAGAAATCGGC,32,#aaaa00
+2[183],0[184],ACATACGACTAATGAGTGAGCTACAGGCGA,30,#7300de
+2[215],0[216],TGAAATTGTTGCGCTCACTGCCCGTGCAGCAA,32,#57bb00
+2[247],0[248],TTCGTAATACCTGTCGTGCCAGCTATTGCCCT,32,#b8056c
+2[279],0[280],ACTCTAGACAACGCGCGGGGAGATTCTTTT,30,#b8056c
+3[72],5[71],ACCGCCTGTAACAACTAATAGATTTTAATTTT,32,#f74308
+3[104],5[103],GCAGCAAAGGAAGGTTATCTAAAATTTGCGGA,32,#f7931e
+3[136],5[135],CTGAACCAGTTGGCAAATCAACGAATTATC,30,#b8056c
+3[168],5[167],GTTGGGAAATTCGCCATTCAGGCTAACGCCAT,32,#cc0000
+3[200],5[199],GCTATTACGCTTCTGGTGCCGGAATCCTGTAG,32,#f74308
+3[232],5[231],CTGCAAGAAGATCGCACTCCAGGAGCGAGT,30,#f7931e
+3[264],5[263],GTTTTCCCTTTGAGGGGACGACGAGGAACAAA,32,#1700de
+4[87],2[88],AGGAGCACCAACAGTGCCACGCTGTGGCAC,30,#1700de
+4[119],2[120],GGAATTGATGAAAAATCTAAAGCAAGAACCCT,32,#f74308
+4[151],2[152],ATCTGGTCTCAAATATCAAACCCTTAATAAAA,32,#1700de
+4[183],2[184],AAAGCGCCGGGCGATCGGTGCGGCCACACA,30,#f74308
+4[215],2[216],CCGGCACCGCCAGCTGGCGAAAGGTTCCTGTG,32,#f7931e
+4[247],2[248],GCCTCAGGGCGATTAAGTTGGGTAAGCTCGAA,32,#b8056c
+4[279],2[280],TCTGCCAGAGTCACGACGTTGTACAGGTCG,30,#57bb00
+5[72],7[71],AAAAGTTTAATTATTTGCACGTAATCGCCTGA,32,#f7931e
+5[104],7[103],ACAAAGAAATAATGGAAGGGTTAGAATCGCGC,32,#cc0000
+5[136],7[135],ATCATATATAATCCTGATTGTTACCTGAGC,30,#f74308
+5[168],7[167],CAAAAATATTTTTTAACCAATAGGATTCAACC,32,#f74308
+5[200],7[199],CCAGCTTTATTCGCATTAAATTTTGGAGAGGG,32,#b8056c
+5[232],7[231],AACAACCTTTAAATTGTAAACGAGGCTATC,30,#b8056c
+5[264],7[263],CGGCGGATCCCCAAAAACAGGAAGGCAAACAA,32,#b8056c
+6[87],4[88],CATATCAAGAGTAACATTATCATTATCTTT,30,#57bb00
+6[119],4[120],ACTTCTGAACCACCAGAAGGAGCGAGTTGAAA,32,#cc0000
+6[151],4[152],TCATCAATTCCTGATTATCAGATGCAATCAAT,32,#f7931e
+6[183],4[184],TCAGCTCAATTCGCGTCTGGCCTACCAGGC,30,#f74308
+6[215],4[216],TTGTTAAACATCAACATTAAATGTCCAGCTTT,32,#57bb00
+6[247],4[248],AGCAAATACGTCGGATTCTCCGTGCAGTATCG,32,#cc0000
+6[279],4[280],CAGAAAAGTGACCGTAATGGGATCCGTGCA,30,#aaaa00
+7[72],9[71],TTGCTTTGTATGTGAGTGAATAACAGTGAATT,32,#007200
+7[104],9[103],AGAGGCGATTTTTTAATGGAAACAACTACCTT,32,#cc0000
+7[136],9[135],AAAAGAAAATTACATTTAACAATATATAAC,30,#aaaa00
+7[168],9[167],GTTCTAGCTCACCATCAATATGATCAATTCTA,32,#57bb00
+7[200],9[199],TAGCTATTAAAAGGGTGAGAAAGGCAATAAAT,32,#1700de
+7[232],9[231],AGGTCATCAATGCCTGAGTAATCAAAATTA,30,#f7931e
+7[264],9[263],GAGAATCGAAAATTTTTAGAACCCAGCTAAAT,32,#03b6a2
+8[87],6[88],AATCAATAAATACCAAGTTACAAAACCTAC,30,#f74308
+8[119],6[120],GAATTACCATTATTCATTTCAATTTGGATTAT,32,#f7931e
+8[151],6[152],ACAAAATTGATGATGAAACAAACAATGGCAAT,32,#333333
+8[183],6[184],CAGTCAAATGATAAATTAATGCCTGTTAAA,30,#b8056c
+8[215],6[216],AAAGATTCTTTGAGAGATCTACAATTAATATT,32,#333333
+8[247],6[248],TTTAAATGTGCCTGAGAGTCTGGAATTGTATA,32,#cc0000
+8[279],6[280],CAAGGATAATGAACGGTAATCGTTGATAAT,30,#333333
+9[72],11[71],TATCAAAAGGTTTGAAATACCGACACCAGTAT,32,#f74308
+9[104],11[103],TTTAACCTAGTTAATTTCATCTTCCTTAATTG,32,#cc0000
+9[136],11[135],TATATGTGAACGCGAGAAAACTAACATGTA,30,#f74308
+9[168],11[167],CTAATAGTGCTGAAAAGGTGGCATACTCCAAC,32,#aaaa00
+9[200],11[199],CATACAGGCTGTTTAGCTATATTTTAATTGCT,32,#333333
+9[232],11[231],AGCAATACATTAGATACATTTCCGGATGGC,30,#cc0000
+9[264],11[263],CGGTTGTACCAATTCTGCGAACGAATGCTGTA,32,#007200
+10[87],8[88],AATTTAATTCATAGGTCTGAGAGGTACATA,30,#f7931e
+10[119],8[120],TATATTTTCCGGCTTAGGTTGGGTTTTCATTT,32,#03b6a2
+10[151],8[152],AAGACAAAAAATGCTGATGCAAATTCAAGAAA,32,#aaaa00
+10[183],8[184],GGGCGCGAAGTAGCATTAACATCCCGGAGA,30,#03b6a2
+10[215],8[216],TCAATAACCAAGGCAAAGAATTAGGTGTAGGT,32,#7300de
+10[247],8[248],AGTTTGACAAGCCTCAGAGCATAATCATATAT,32,#1700de
+10[279],8[280],GTTGATTCCCAAAAACATTATGATTCAACG,30,#aaaa00
+11[72],13[71],AAAGCCAAGCTAATGCAGAACGCGTTCCTTAT,32,#333333
+11[104],13[103],AGAATCGCGTCCAGACGACGACAACAAGTACC,32,#007200
+11[136],13[135],ATTTAGGATAAAGTACCGACAAGTTTTTAT,30,#03b6a2
+11[168],13[167],AGGTCAGGACCAGACCGGAAGCAAAGGCTTTT,32,#007200
+11[200],13[199],CCTTTTGAATATCGCGTTTTAATTGGTAATAG,32,#f7931e
+11[232],13[231],TTAGAGCAAAGATTAAGAGGAACCAATACT,30,#333333
+11[264],13[263],GCTCAACAATTATAGTCAGAAGCATGAATCCC,32,#1700de
+12[87],10[88],CATGTTCACGCTCAACAGTAGGGTGACCTA,30,#cc0000
+12[119],10[120],GTAATTCTCATATTTAACAACGCCTTTTCAAA,32,#333333
+12[151],10[152],AAGAGAATCAGAGGCATTTTCGAGCCAATCGC,32,#57bb00
+12[182],10[184],AAAGCGAATTAGAGAGTACCTTTCATTTG,29,#b8056c
+12[215],10[216],GACTTCAATAAGAGGTCATTTTTGGCAAATGG,32,#b8056c
+12[247],10[248],TGCATCAATTAATTGCTGAATATAGTAGATTT,32,#f7931e
+12[279],10[280],CCCTGACTTGTTTTAAATATGCATATAACA,30,#f74308
+13[72],15[71],CATTCCAAACTTGCGGGAGGTTTTTTTGCCAG,32,#cc0000
+13[104],15[103],GCACTCATAAGAACGCGAGGCGTTTTTATCCC,32,#aaaa00
+13[136],15[135],TTTCATCAATCAGATATAGAAGGTTTAACG,30,#f7931e
+13[168],15[167],GCAAAAGAAAACCAAAATAGCGAGTGAGATGG,32,#03b6a2
+13[200],15[199],TAAAATGTATCATAACCCTCGTTTTGAATTAC,32,#7300de
+13[232],15[231],GCGGAATAGGAATTACGAGGCACATTATAC,30,#f7931e
+13[264],15[263],CCTCAAATACATTCAACTAATGCAATCTACGT,32,#57bb00
+14[87],12[88],ACCTCCCGGAACGGGTATTAAACTAAACAA,30,#f74308
+14[119],12[120],GGTATTCTCGAGAACAAGCAAGCCAAGGTAAA,32,#f74308
+14[151],12[152],AGCAAGCAGTAGGAATCATTACCGCCAGTAAT,32,#aaaa00
+14[183],12[183],GACGATAAAGTTTTGCCAGAGGGCGAGCTTC,31,#1700de
+14[215],12[216],GCAACACTTTAGACTGGATAGCGTGCCCGAAA,32,#f74308
+14[247],12[248],ACGCCAAACGTCATAAATATTCATAAGCGGAT,32,#aaaa00
+14[279],12[280],GGAATACCGCTTTAAACAGTTCAGTCTTTA,30,#7300de
+15[72],17[71],TTACAAAATAATTGAGCGCTAATAGAAAAGTA,32,#7300de
+15[104],17[103],AATCCAAATTAACTGAACACCCTGCAGAAGGA,32,#007200
+15[136],17[135],TCAAAAATAAAAACAGGGAAGCGAATACCC,30,#b8056c
+15[168],17[167],TTTAATTTAGTAGTAAATTGGGCTGTATCATC,32,#333333
+15[200],17[199],CTTATGCGAAGGCTTGCCCTGACGCGCGACCT,32,#03b6a2
+15[232],17[231],CAGTCAGTCAACGTAACAAAGCAGGCGCAG,30,#333333
+15[264],17[263],TAATAAAATCTTGACAAGAACCGGACTGACCA,32,#1700de
+16[87],14[88],TCAGAGGGTAAACAGCCATATTATTAGCGA,30,#f7931e
+16[119],14[120],CGGGAGAATAAGAAACGATTTTTTGCTTATCC,32,#007200
+16[151],14[152],GAATAACATGAAAATAGCAGCCTTCGCCCAAT,32,#cc0000
+16[183],14[184],CCAGAACGCAACTTTAATCATTGACCAGAC,30,#03b6a2
+16[215],14[216],CAGTGAATATTTTAAGAACTGGCTTAGTAAGA,32,#f74308
+16[247],14[248],TACCCAAAGACGTTGGGAAGAAAAGATACATA,32,#aaaa00
+16[279],14[280],AAGAGTAACGAACTAACGGAACAAGATTTA,30,#333333
+17[72],19[71],AGCAGATACCACGGAATAAGTTTAACGGAAAT,32,#b8056c
+17[104],19[103],AACCGAGGGGTGGCAACATATAAACCGTCACC,32,#f74308
+17[136],19[135],AAAAGAATGTTAGCAAACGTAGGCCAGCAA,30,#aaaa00
+17[168],19[167],GCCTGATAAGTACAACGGAGATTTGATATATT,32,#1700de
+17[200],19[199],GCTCCATGACCCCCAGCGATTATATTAAAGGC,32,#007200
+17[232],19[231],ACGGTCAGCAAAAGAATACACTAGCAGCGA,30,#f7931e
+17[264],19[263],ACTTTGAACACTACGAAGGCACCAGCAACGGC,32,#cc0000
+18[87],16[88],CAAAGACAGCCGAACAAAGTTACAACAAAG,30,#f7931e
+18[119],16[120],TACATAAAAAACGCAATAATAACGGCATTAGA,32,#f74308
+18[151],16[152],ACGCAGTACTGGCATGATTAAGACTACAGAGA,32,#007200
+18[183],16[184],CGAAACAAAATTGTGTCGAAATCAGAAACA,30,#aaaa00
+18[215],16[216],CATCTTTGTTACTTAGCCGGAACGTGCTCATT,32,#cc0000
+18[247],16[248],CGAAAGAGATCATAAGGGAACCGAATATTCAT,32,#cc0000
+18[279],16[280],CGTAATGCAGAGGACAGATGAACCTTCATC,30,#aaaa00
+19[72],21[71],TATTCATTTTAGCGTCAGACTGTAACCGCCTC,32,#f74308
+19[104],21[103],GACTTGAGGTAATCAGTAGCGACACCGCCACC,32,#7300de
+19[136],21[135],AATCACCCGTCACCAATGAAACGCCACCAG,30,#7300de
+19[168],21[167],CGGTCGCTTCGCCCACGCATAACCCGATCTAA,32,#57bb00
+19[200],21[199],CGCTTTTGCCGATAGTTGCGCCGATAGTAAAT,32,#7300de
+19[232],21[231],AAGACAGTTTCGAGGTGAATTTAAACAACT,30,#f74308
+19[264],21[263],TACAGAGGGAGCCTTTAATTGTATAATAGAAA,32,#cc0000
+20[87],18[88],GTTTGCCTAAAGGTGAATTATCAAGAAACG,30,#1700de
+20[119],18[120],GCAGCACCCCATTTGGGAATTAGAAAAATACA,32,#aaaa00
+20[151],18[152],GCCGGAAAAGTAGCACCATTACCATCCTTATT,32,#cc0000
+20[183],18[184],AACAACCAGAGGCTTGCAGGGAGCCAAGCG,30,#333333
+20[215],18[216],GCTTGATACGGGATCGTCACCCTCAAAACACT,32,#1700de
+20[247],18[248],CAGCTTGCCATCGGAACGAGGGTAACCTAAAA,32,#aaaa00
+20[279],18[280],TCCAAAAGCTTTGAGGACTAAAGTAAAATA,30,#b8056c
+21[72],23[71],CCTCAGAGTGGAAAGCGCAGTCTCAGTGCCCG,32,#007200
+21[104],23[103],CTCAGAGCACAAACAAATAAATCCCTATTTCG,32,#007200
+21[136],23[135],AACCACCGAGGCAGGTCAGACGAGTATTAA,30,#1700de
+21[168],23[167],AGTTTTGTCTCATAGTTAGCGTAAGGATTAGG,32,#f74308
+21[200],23[199],GAATTTTCCTACAACGCCTGTAGCCAGGCGGA,32,#7300de
+21[232],23[231],TTCAACACCGTAACACTGAGTTTAAGTATA,30,#b8056c
+21[264],23[263],GGAACAACCAGGGATAGCAAGCCCACTCAGGA,32,#03b6a2
+22[87],20[88],AGCCAGAACCGCCACCCTCAGAAGAATCAA,30,#cc0000
+22[119],20[120],TGATATTCCACCACCCTCAGAGCCCATCGATA,32,#f74308
+22[151],20[152],AGGAGGTTACCAGAGCCGCCGCCATTAGCAAG,32,#b8056c
+22[183],20[184],AGACAGCCCGTCTTTCCAGACGTCAATGAC,30,#333333
+22[215],20[216],AGTACAAATGTATGGGATTTTGCTCTTAAACA,32,#57bb00
+22[247],20[248],CCCATGTAGTTTCAGCGGAGTGAGCGGTTTAT,32,#57bb00
+22[279],20[280],CTCATTTTTAAAGGAATTGCGAAAAAAGGC,30,#333333
+23[72],22[88],TATAAACAGTTAATGCCCCCTGCTCATTAA,30,#f74308
+23[104],22[120],GAACCTATTATTCTGAAACATGAAATTGGCCT,32,#f74308
+23[136],22[152],GAGGCTGAGACTCCTCAAGAGAAGCATTGAC,31,#03b6a2
+23[168],22[184],ATTAGCGGGGTTTTGCTCAGTACATTCCAC,30,#7300de
+23[200],22[216],TAAGTGCCGTCGAGAGGGTTGATATCGTCACC,32,#57bb00
+23[232],22[248],GCCCGGAATAGGTGTATCACCGTAATAGGAA,31,#f7931e
+23[264],22[280],GGTTTAGTACCGCCACCCTCAGACACCACC,30,#333333</code></pre>
+<p><a href="./w02/sequence.csv">Download</a> as a <code>.csv</code> file.</p>
+<h3 id="color-staple-strands-to-create-a-black-and-white-pattern-in-cadnano">Color staple strands to create a black-and-white pattern in caDNAno</h3>
+<div class="figure">
+<img src="./img/w02/bw.svg" />
+
+</div>
+<h3 id="generate-ascii-file-black-and-white-image">Generate ASCII file black-and-white image</h3>
+<p>This part of the assignment is slightly independent from the caDNAno one. I hope you have good imagination now. Imagine you have two 96 well plate and you turn them 90º and put them side by side. They will look like this:</p>
+<div class="figure">
+<img src="./img/w02/microplate.svg" />
+
+</div>
+<p>In this assignment you have to generate a text file using your favorite text editor representing these two 96 well plates and draw some kind of pattern on it. The ASCII text file below represents a blank 12x16 pixels image (because of decalage looking like pseudo 24x16):</p>
+<pre><code>000:   ...   ...   ...   ...   ...   ...   ...   ...     12
+001:      ...   ...   ...   ...   ...   ...   ...   ...  12
+002:   ...   ...   ...   ...   ...   ...   ...   ...     11
+003:      ...   ...   ...   ...   ...   ...   ...   ...  11
+004:   ...   ...   ...   ...   ...   ...   ...   ...     10
+005:      ...   ...   ...   ...   ...   ...   ...   ...  10
+006:   ...   ...   ...   ...   ...   ...   ...   ...     9
+007:      ...   ...   ...   ...   ...   ...   ...   ...  9
+008:   ...   ...   ...   ...   ...   ...   ...   ...     8
+009:      ...   ...   ...   ...   ...   ...   ...   ...  8
+010:   ...   ...   ...   ...   ...   ...   ...   ...     7
+011:      ...   ...   ...   ...   ...   ...   ...   ...  7
+012:   ...   ...   ...   ...   ...   ...   ...   ...     6
+013:      ...   ...   ...   ...   ...   ...   ...   ...  6
+014:   ...   ...   ...   ...   ...   ...   ...   ...     5
+015:      ...   ...   ...   ...   ...   ...   ...   ...  5
+016:   ...   ...   ...   ...   ...   ...   ...   ...     4
+017:      ...   ...   ...   ...   ...   ...   ...   ...  4
+018:   ...   ...   ...   ...   ...   ...   ...   ...     3
+019:      ...   ...   ...   ...   ...   ...   ...   ...  3
+020:   ...   ...   ...   ...   ...   ...   ...   ...     2
+021:      ...   ...   ...   ...   ...   ...   ...   ...  2
+022:   ...   ...   ...   ...   ...   ...   ...   ...     1
+023:      ...   ...   ...   ...   ...   ...   ...   ...  1
+        A  B  C  D  E  F  G  H  A  B  C  D  E  F  G  H
+       &lt;--- 96 well plate ----&gt;&lt;--- 96 well plate ----&gt;</code></pre>
+<p>Where <code>...</code> represents where a pixel is located. If you leave the <code>...</code> it will mean that there is no feature (a zero value pixel) and if you replace it with <code>@@@</code> or <code>XXX</code> or any other symbol it will mean that there is a feature there (a 1 pixel value). So with a litte bit of patience, using <a href="http://mtpaint.sourceforge.net/">mtPaint</a> (sort of GNU version of Microsoft Paint) <strong>I created a 16x12 pixels Pacman Ghost</strong>, I'm a 80's guy.</p>
+<div class="figure">
+<img src="./img/w02/mtpaint.png" />
+
+</div>
+<p>From this I <em>transferred</em> it to the 96 well plates.</p>
+<div class="figure">
+<img src="./img/w02/microplate1.svg" />
+
+</div>
+<p>And finally from the plates to the ASCII art. You know, when I was a teenager I used to spend a lot of time doing things like this when I was bored. <strong>I would never had imagined that ASCII art would be useful for building DNA nanostructures</strong>.</p>
+<pre><code>000:   ...   ...   ...   ...   ...   ...   ...   ...     12
+001:      ...   ...   ...   ...   ...   ...   ...   ...  12
+002:   ...   ...   ...   @@@   @@@   @@@   ...   ...     11
+003:      ...   ...   @@@   @@@   @@@   ...   ...   ...  11
+004:   ...   ...   @@@   @@@   @@@   @@@   @@@   ...     10
+005:      ...   @@@   @@@   @@@   @@@   @@@   ...   ...  10
+006:   ...   @@@   @@@   @@@   @@@   @@@   @@@   ...     9
+007:      ...   @@@   @@@   @@@   @@@   @@@   @@@   ...  9
+008:   ...   @@@   ...   ...   @@@   ...   @@@   ...     8
+009:      ...   @@@   ...   @@@   ...   ...   @@@   ...  8
+010:   ...   @@@   @@@   ...   @@@   ...   @@@   ...     7
+011:      ...   @@@   ...   @@@   @@@   ...   @@@   ...  7
+012:   ...   @@@   @@@   @@@   @@@   @@@   @@@   ...     6
+013:      ...   @@@   @@@   @@@   @@@   @@@   @@@   ...  6
+014:   ...   @@@   @@@   @@@   @@@   @@@   @@@   ...     5
+015:      ...   @@@   @@@   @@@   @@@   @@@   @@@   ...  5
+016:   ...   @@@   @@@   @@@   @@@   @@@   @@@   ...     4
+017:      ...   @@@   @@@   @@@   @@@   @@@   @@@   ...  4
+018:   ...   @@@   ...   @@@   ...   @@@   ...   ...     3
+019:      ...   @@@   @@@   @@@   @@@   @@@   @@@   ...  3
+020:   ...   @@@   ...   @@@   ...   @@@   ...   ...     2
+021:      ...   ...   ...   ...   ...   ...   @@@   ...  2
+022:   ...   ...   ...   ...   ...   ...   ...   ...     1
+023:      ...   ...   ...   ...   ...   ...   ...   ...  1
+        A  B  C  D  E  F  G  H  A  B  C  D  E  F  G  H
+       &lt;--- 96 well plate ----&gt;&lt;--- 96 well plate ----&gt;</code></pre>
+<h3 id="generate-list-of-wells-to-pipet-to-generate-black-and-white-pattern">Generate list of wells to pipet to generate black-and-white pattern</h3>
+<p>The next step is to <strong>convert the Pacman pattern obtained before into a list of pipetting instructions</strong>. If you were actually to create this pattern with DNA you would order all the staple strands, in such a way that the empty strands fit in 2 plates and the dumbbell strands fit in another 2 plates. Below these are the pipetting addresses for well plates 0 and 1 (also called the empty wells), for the pixels with value 0. In the Pacman ghost pattern we will replace the zero values represented as <code>...</code> with these pipetting addresses.</p>
+<pre><code>000:   0AC   0CC   0EC   0GC   1AC   1CC   1EC   1GC     C
+001:      0BC   0DC   0FC   0HC   1BC   1DC   1FC   1HC  C
+002:   0AB   0CB   0EB   0GB   1AB   1CB   1EB   1GB     B
+003:      0BB   0DB   0FB   0HB   1BB   1DB   1FB   1HB  B
+004:   0AA   0CA   0EA   0GA   1AA   1CA   1EA   1GA     A
+005:      0BA   0DA   0FA   0HA   1BA   1DA   1FA   1HA  A
+006:   0A9   0C9   0E9   0G9   1A9   1C9   1E9   1G9     9
+007:      0B9   0D9   0F9   0H9   1B9   1D9   1F9   1H9  9
+008:   0A8   0C8   0E8   0G8   1A8   1C8   1E8   1G8     8
+009:      0B8   0D8   0F8   0H8   1B8   1D8   1F8   1H8  8
+010:   0A7   0C7   0E7   0G7   1A7   1C7   1E7   1G7     7
+011:      0B7   0D7   0F7   0H7   1B7   1D7   1F7   1H7  7
+012:   0A6   0C6   0E6   0G6   1A6   1C6   1E6   1G6     6
+013:      0B6   0D6   0F6   0H6   1B6   1D6   1F6   1H6  6
+014:   0A5   0C5   0E5   0G5   1A5   1C5   1E5   1G5     5
+015:      0B5   0D5   0F5   0H5   1B5   1D5   1F5   1H5  5
+016:   0A4   0C4   0E4   0G4   1A4   1C4   1E4   1G4     4
+017:      0B4   0D4   0F4   0H4   1B4   1D4   1F4   1H4  4
+018:   0A3   0C3   0E3   0G3   1A3   1C3   1E3   1G3     3
+019:      0B3   0D3   0F3   0H3   1B3   1D3   1F3   1H3  3
+020:   0A2   0C2   0E2   0G2   1A2   1C2   1E2   1G2     2
+021:      0B2   0D2   0F2   0H2   1B2   1D2   1F2   1H2  2
+022:   0A1   0C1   0E1   0G1   1A1   1C1   1E1   1G1     1
+023:      0B1   0D1   0F1   0H1   1B1   1D1   1F1   1H1  1
+        A  B  C  D  E  F  G  H  A  B  C  D  E  F  G  H
+       &lt;------- Plate 0 ------&gt;&lt;------- Plate 1 ------&gt;</code></pre>
+<p>The pipetting addresses are coded in the following way: The <strong>first character</strong> is the plate number (0 or 1 in this case). The <strong>second character</strong> is the row number of the 96 well-plate (from A to H). The <strong>third character</strong> represents the column number from 1 to 12 in hexadecimal code (1,2,3,4,5,6,7,8,9,A,B,C).</p>
+<p>Now these are the pipetting addresses of pixels with value 1 (plates 2 and 3), represented as <code>@@@</code> in the Pacman ghost pattern. We will replace values represented as <code>@@@</code> in the pattern with these addresses.</p>
+<pre><code>000:   2AC   2CC   2EC   2GC   3AC   3CC   3EC   3GC     C
+001:      2BC   2DC   2FC   2HC   3BC   3DC   3FC   3HC  C
+002:   2AB   2CB   2EB   2GB   3AB   3CB   3EB   3GB     B
+003:      2BB   2DB   2FB   2HB   3BB   3DB   3FB   3HB  B
+004:   2AA   2CA   2EA   2GA   3AA   3CA   3EA   3GA     A
+005:      2BA   2DA   2FA   2HA   3BA   3DA   3FA   3HA  A
+006:   2A9   2C9   2E9   2G9   3A9   3C9   3E9   3G9     9
+007:      2B9   2D9   2F9   2H9   3B9   3D9   3F9   3H9  9
+008:   2A8   2C8   2E8   2G8   3A8   3C8   3E8   3G8     8
+009:      2B8   2D8   2F8   2H8   3B8   3D8   3F8   3H8  8
+010:   2A7   2C7   2E7   2G7   3A7   3C7   3E7   3G7     7
+011:      2B7   2D7   2F7   2H7   3B7   3D7   3F7   3H7  7
+012:   2A6   2C6   2E6   2G6   3A6   3C6   3E6   3G6     6
+013:      2B6   2D6   2F6   2H6   3B6   3D6   3F6   3H6  6
+014:   2A5   2C5   2E5   2G5   3A5   3C5   3E5   3G5     5
+015:      2B5   2D5   2F5   2H5   3B5   3D5   3F5   3H5  5
+016:   2A3   2C3   2E3   2G3   3A3   3C3   3E3   3G3     4
+017:      2B3   2D3   2F3   2H3   3B3   3D3   3F3   3H3  4
+018:   2A3   2C3   2E3   2G3   3A3   3C3   3E3   3G3     3
+019:      2B3   2D3   2F3   2H3   3B3   3D3   3F3   3H3  3
+020:   2A2   2C2   2E2   2G2   3A2   3C2   3E2   3G2     2
+021:      2B2   2D2   2F2   2H2   3B2   3D2   3F2   3H2  2
+022:   2A1   2C1   2E1   2G1   3A1   3C1   3E1   3G1     1
+023:      2B1   2D1   2F1   2H1   3B1   3D1   3F1   3H1  1
+        A  B  C  D  E  F  G  H  A  B  C  D  E  F  G  H
+       &lt;------- Plate 2 ------&gt;&lt;------- Plate 3 ------&gt;</code></pre>
+<p>There is an isomorphism between the position on the drawing and the position on the plate. You could prepare pipette tip boxes and anywhere you want to get a strand you put a tip there and anywhere you don't want to get the strand you don't put a tip there. And then the pipette tip box actually makes the pattern that you want to draw.</p>
+<h2 id="what-i-learned">What I learned</h2>
+<p>The most interesting feature about DNA nanostructures is that <strong>we can create any 2D or 3D shape at the nanometre scale</strong>. We still don't know the applications of these structures. But we should keep creating and improving design tools and machines that automate the process of generating these shapes, so that when we find the correct shapes for the correct applications we can quickly create them.</p>
+<h2 id="assignment-review">Assignment review</h2>
+<p>On wednesdays we always have a review session of last week's assignment. Here is the link to this week <a href="https://vimeo.com/138765522">assignments review</a>.</p>
+<hr />
+<h2 id="home"><a href="./w01.html">&lt;&lt;</a> <a href="./index.html">home</a> <a href="./w03.html">&gt;&gt;</a></h2>
+</body>
+</html>
